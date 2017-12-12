@@ -8,7 +8,7 @@ namespace Data
     public class Context : DbContext
     {
         public Context()
-            : base("name=Context")
+            : base("Employees")
         {
         }
         
@@ -20,6 +20,10 @@ namespace Data
         {
             modelBuilder.Entity<Employee>()
                 .HasRequired(c => c.Country)
+                .WithMany(c => c.Employees);
+
+            modelBuilder.Entity<Employee>()
+                .HasRequired(c => c.CurrentShift)
                 .WithMany(c => c.Employees);
 
             base.OnModelCreating(modelBuilder);

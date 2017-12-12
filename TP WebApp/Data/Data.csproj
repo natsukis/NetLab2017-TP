@@ -50,14 +50,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context.cs" />
+    <Compile Include="DataAccess\CountriesData.cs" />
+    <Compile Include="DataAccess\EmployeesData.cs" />
     <Compile Include="Entities\Country.cs" />
     <Compile Include="Entities\Employee.cs" />
     <Compile Include="Entities\Shift.cs" />
+    <Compile Include="Entities\ShiftControl.cs" />
+    <Compile Include="Migrations\201712091532273_InitialDB.cs" />
+    <Compile Include="Migrations\201712091532273_InitialDB.Designer.cs">
+      <DependentUpon>201712091532273_InitialDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DataAccess\ShiftsData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201712091532273_InitialDB.resx">
+      <DependentUpon>201712091532273_InitialDB.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

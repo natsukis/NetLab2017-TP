@@ -9,61 +9,45 @@ namespace Data.DataAccess
 {
     public class CountriesData
     {
+        private Repository<Country> Repository;
+
+        public CountriesData()
+        {
+            this.Repository = new Repository<Country>();
+        }
+
         public void Create(Country country)
         {
-            using (var context = new Context())
-            {
-                context.Countries.Add(country);
-                context.SaveChanges();
-            }
+            this.Repository.Persist(country);
+            this.Repository.SaveChanges();
         }
 
         public Country Read(int id)
         {
-            using (var context = new Context())
-            {
-                return context.Countries
-                    .AsNoTracking()
-                    .Where(c => c.ID == id)
-                    .FirstOrDefault();
-            }
+            return this.Repository.GetById(id);
         }
 
         public List<Country> ReadAll(int id)
         {
-            using (var context = new Context())
-            {
-                return context.Countries
-                    .AsNoTracking()
-                    .ToList();
-            }
+            return this.Repository.Set().ToList();
         }
 
         public void Update(Country countryUpdated)
         {
-            using (var context = new Context())
-            {
-                var country = context.Countries
-                    .Where(c => c.ID == countryUpdated.ID)
-                    .FirstOrDefault();
+            var country = this.Repository.GetById(countryUpdated.ID);
 
-                country.CountryName = countryUpdated.CountryName;
+            country.CountryName = countryUpdated.CountryName;
 
-                context.SaveChanges();
-            }
+            this.Repository.Update(country);
+            this.Repository.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            using (var context = new Context())
-            {
-                var country = context.Countries
-                    .Where(c => c.ID == id)
-                    .FirstOrDefault();
+            var country = this.Repository.GetById(id);
 
-                context.Countries.Remove(country);
-                context.SaveChanges();
-            }
+            this.Repository.Remove(country);
+            this.Repository.SaveChanges();
         }
     }
 }

@@ -15,6 +15,7 @@ namespace Data
         public DbSet<Country> Countries { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Shift> Shifts { get; set; }
+        public DbSet<ShiftControl> ShiftControl { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

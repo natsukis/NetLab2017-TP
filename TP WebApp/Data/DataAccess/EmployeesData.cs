@@ -4,28 +4,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace Data.DataAccess
 {
     public class EmployeesData
     {
+        private Repository<Employee> Repository;
+
+        public EmployeesData()
+        {
+            this.Repository = new Repository<Employee>();
+        }
+
         public void Create(Employee employee)
         {
-            using (var context = new Context())
-            {
-                context.Employees.Add(employee);
-                context.SaveChanges();
-            }
+            this.Repository.Persist(employee);
+            this.Repository.SaveChanges();
         }
 
         public List<Employee> ReadAll()
         {
-            using (var context = new Context())
-            {
-                return context.Employees
-                    .AsNoTracking()
-                    .ToList();
-            }
+            return this.Repository.Set().ToList();
         }
 
         public Employee Read(int id)
@@ -33,7 +33,8 @@ namespace Data.DataAccess
             using (var context = new Context())
             {
                 return context.Employees
-                    .AsNoTracking()
+                    .Include(c => c.Country)
+                    .Include(c => c.CurrentShift)
                     .Where(c => c.ID == id)
                     .FirstOrDefault();
             }
@@ -45,12 +46,14 @@ namespace Data.DataAccess
             {
                 var employee = context.Employees
                     .Where(c => c.ID == employeeUpdated.ID)
-                    .FirstOrDefault();
+                    .First();
 
+                //country proxy
                 var country = context.Countries
                     .Where(c => c.ID == employeeUpdated.Country.ID)
                     .FirstOrDefault();
-
+                
+                //shift proxy
                 var currentShift = context.Shifts
                     .Where(c => c.ID == employeeUpdated.CurrentShift.ID)
                     .FirstOrDefault();
@@ -67,15 +70,9 @@ namespace Data.DataAccess
 
         public void Delete(int id)
         {
-            using (var context = new Context())
-            {
-                var employee = context.Employees
-                    .Where(c => c.ID == id)
-                    .FirstOrDefault();
-
-                context.Employees.Remove(employee);
-                context.SaveChanges();
-            }
+            var employee = Repository.GetById(id);
+            Repository.Remove(employee);
+            Repository.SaveChanges();
         }
 
 

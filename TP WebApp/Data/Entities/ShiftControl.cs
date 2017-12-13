@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 
 namespace Data.Entities
 {
-    [Table("Shift Control")]
     public class ShiftControl
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
+
+        [Required]
+        public DateTime Day { get; set; }
 
         [Required]
         public Employee Employee { get; set; }
@@ -22,6 +24,6 @@ namespace Data.Entities
 
         public DateTime? Exit { get; set; }
 
-        public decimal WorkedHours { get; set; }
+        public int WorkedHours { get; set; }
     }
 }

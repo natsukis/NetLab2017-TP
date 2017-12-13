@@ -18,7 +18,7 @@ namespace Services.Operations
             if (shift != null)
             {
 
-                newShift.ShiftID = shift.ShiftID;
+                newShift.ID = shift.ID;
 
                 newShift.InitialHour = shift.InitialHour;
 
@@ -34,7 +34,7 @@ namespace Services.Operations
         {
             var newShift = new ShiftModel()
             {
-                ShiftID = shift.ShiftID,
+                ID = shift.ID,
 
                 InitialHour = shift.InitialHour,
 

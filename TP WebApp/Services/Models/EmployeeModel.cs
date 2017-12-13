@@ -9,7 +9,7 @@ namespace Services
 {
    public class EmployeeModel
     {
-        public int EmployeeID { get; set; }
+        public int ID { get; set; }
 
   
         public string FirstName { get; set; }

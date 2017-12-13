@@ -8,13 +8,15 @@ namespace Services.Models
 {
     public class ShiftModel
     {
-        public string ShiftID { get; set; }
+        public int ID { get; set; }
 
     
         public short InitialHour { get; set; }
 
        
         public short EndingHour { get; set; }
+
+        public virtual List<EmployeeModel> Employees { get; set; }
 
     }
 }

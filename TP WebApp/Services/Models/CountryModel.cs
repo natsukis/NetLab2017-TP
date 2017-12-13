@@ -9,7 +9,7 @@ namespace Services
 {
    public class CountryModel
     {
-        public int CountryID { get; set; }
+        public int ID { get; set; }
              
         public string CountryName { get; set; }
 
@@ -17,4 +17,4 @@ namespace Services
     }
 
 }
-}
+

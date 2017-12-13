@@ -27,7 +27,7 @@ namespace Data.DataAccess
             return this.Repository.GetById(id);
         }
 
-        public List<Country> ReadAll(int id)
+        public List<Country> ReadAll()
         {
             return this.Repository.Set().ToList();
         }

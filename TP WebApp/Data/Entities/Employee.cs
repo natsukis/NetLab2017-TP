@@ -26,6 +26,9 @@ namespace Data.Entities
 
         [Required]
         public Shift CurrentShift { get; set; }
+
+        [Required]
+        public decimal ValueByHour { get; set; }
         
     }
 }

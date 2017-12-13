@@ -73,6 +73,10 @@
     <Compile Include="Migrations\201712131156294_ShiftControlFix.Designer.cs">
       <DependentUpon>201712131156294_ShiftControlFix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712131636515_NewEmployeeRequest.cs" />
+    <Compile Include="Migrations\201712131636515_NewEmployeeRequest.Designer.cs">
+      <DependentUpon>201712131636515_NewEmployeeRequest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataAccess\ShiftsData.cs" />
@@ -94,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712131156294_ShiftControlFix.resx">
       <DependentUpon>201712131156294_ShiftControlFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712131636515_NewEmployeeRequest.resx">
+      <DependentUpon>201712131636515_NewEmployeeRequest.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

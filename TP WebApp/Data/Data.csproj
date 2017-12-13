@@ -52,6 +52,7 @@
     <Compile Include="Context.cs" />
     <Compile Include="DataAccess\CountriesData.cs" />
     <Compile Include="DataAccess\EmployeesData.cs" />
+    <Compile Include="DataAccess\ShiftControlData.cs" />
     <Compile Include="Entities\Country.cs" />
     <Compile Include="Entities\Employee.cs" />
     <Compile Include="Entities\Shift.cs" />

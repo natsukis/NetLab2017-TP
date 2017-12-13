@@ -63,6 +63,7 @@ namespace Data.DataAccess
                 employee.Country = country;
                 employee.EntryDate = employeeUpdated.EntryDate;
                 employee.CurrentShift = currentShift;
+                employee.ValueByHour = employeeUpdated.ValueByHour;
 
                 context.SaveChanges();
             }

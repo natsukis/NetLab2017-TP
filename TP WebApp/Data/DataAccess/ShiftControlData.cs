@@ -29,14 +29,15 @@ namespace Data.DataAccess
             }
         }
 
-        public List<ShiftControl> ReadAllByDay(DateTime date)
+        public List<ShiftControl> ReadEmployeeByDate(DateTime date, int id)
         {
             using (var context = new Context())
             {
                 return context.ShiftControl
                     .Include(c => c.Employee)
                     .AsNoTracking()
-                    .Where(c => c.Day == date)
+                    .Where(c => c.Day.Month == date.Month &&
+                        c.Day.Year == date.Year && c.Employee.ID == id)
                     .ToList();
             }
         }

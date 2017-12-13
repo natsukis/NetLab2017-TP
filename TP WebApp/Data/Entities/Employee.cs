@@ -8,7 +8,7 @@ namespace Data.Entities
     public class Employee
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         [Required]
@@ -26,6 +26,9 @@ namespace Data.Entities
 
         [Required]
         public Shift CurrentShift { get; set; }
+
+        [Required]
+        public decimal ValueByHour { get; set; }
         
     }
 }

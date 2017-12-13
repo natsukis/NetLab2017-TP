@@ -57,21 +57,9 @@
     <Compile Include="Entities\Employee.cs" />
     <Compile Include="Entities\Shift.cs" />
     <Compile Include="Entities\ShiftControl.cs" />
-    <Compile Include="Migrations\201712091532273_InitialDB.cs" />
-    <Compile Include="Migrations\201712091532273_InitialDB.Designer.cs">
-      <DependentUpon>201712091532273_InitialDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712122118340_SecondChanges.cs" />
-    <Compile Include="Migrations\201712122118340_SecondChanges.Designer.cs">
-      <DependentUpon>201712122118340_SecondChanges.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712122121097_AddedShiftControl.cs" />
-    <Compile Include="Migrations\201712122121097_AddedShiftControl.Designer.cs">
-      <DependentUpon>201712122121097_AddedShiftControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712131156294_ShiftControlFix.cs" />
-    <Compile Include="Migrations\201712131156294_ShiftControlFix.Designer.cs">
-      <DependentUpon>201712131156294_ShiftControlFix.cs</DependentUpon>
+    <Compile Include="Migrations\201712132340129_InitialDB.cs" />
+    <Compile Include="Migrations\201712132340129_InitialDB.Designer.cs">
+      <DependentUpon>201712132340129_InitialDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,19 +71,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201712091532273_InitialDB.resx">
-      <DependentUpon>201712091532273_InitialDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712122118340_SecondChanges.resx">
-      <DependentUpon>201712122118340_SecondChanges.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712122121097_AddedShiftControl.resx">
-      <DependentUpon>201712122121097_AddedShiftControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712131156294_ShiftControlFix.resx">
-      <DependentUpon>201712131156294_ShiftControlFix.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712132340129_InitialDB.resx">
+      <DependentUpon>201712132340129_InitialDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

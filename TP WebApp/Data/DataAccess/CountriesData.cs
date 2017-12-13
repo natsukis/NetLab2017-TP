@@ -22,12 +22,14 @@ namespace Data.DataAccess
             this.Repository.SaveChanges();
         }
 
-        public Country Read(int id)
+        public Country Read(string name)
         {
-            return this.Repository.GetById(id);
+            return this.Repository.Set()
+                .Where(c => c.CountryName == name)
+                .FirstOrDefault();
         }
 
-        public List<Country> ReadAll(int id)
+        public List<Country> ReadAll()
         {
             return this.Repository.Set().ToList();
         }

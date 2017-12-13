@@ -81,7 +81,7 @@ namespace Services
             }
         }
 
-        public void Update(int id, EmployeeModel employee)
+        public int Update(int id, EmployeeModel employee)
         {
 
             var auxCountry = new Country();
@@ -99,18 +99,27 @@ namespace Services
 
             var employeeUpdate = repoEmployees.Set().FirstOrDefault(c => c.EmployeeID == employee.EmployeeID);
 
+            if (employeeUpdate != null)
+            {
+                employeeUpdate.FirstName = employee.FirstName;
 
-            employeeUpdate.FirstName = employee.FirstName;
+                employeeUpdate.LastName = employee.LastName;
 
-            employeeUpdate.LastName = employee.LastName;
+                employeeUpdate.Country = auxCountry;
 
-            employeeUpdate.Country = auxCountry;
+                employeeUpdate.EntryDate = employee.EntryDate;
 
-            employeeUpdate.EntryDate = employee.EntryDate;
+                employeeUpdate.CurrentShift = auxShift;
 
-            employeeUpdate.CurrentShift = auxShift;
+                repoEmployees.SaveChanges();
 
-            repoEmployees.SaveChanges();
+                return 1;
+
+            }
+
+            return 0;
+
+
 
 
         }

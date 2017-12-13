@@ -12,14 +12,20 @@ namespace Services.Operations
     {
         public Shift Convert(ShiftModel shift)
         {
-            var newShift = new Shift()
+
+            var newShift = new Shift();
+
+            if (shift != null)
             {
-                ShiftID = shift.ShiftID,
 
-                InitialHour = shift.InitialHour,
+                newShift.ShiftID = shift.ShiftID;
 
-                EndingHour = shift.EndingHour
-            };
+                newShift.InitialHour = shift.InitialHour;
+
+                newShift.EndingHour = shift.EndingHour;
+                
+            }
+
 
             return newShift;
         }

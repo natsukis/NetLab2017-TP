@@ -61,17 +61,18 @@ namespace Services
         public CountryModel Read(string name)
         {
             var country = repoCountry.Set().FirstOrDefault(c => c.CountryName == name);
-
-            var readCountry = new CountryModel(){
-
-                CountryID = country.CountryID,
-
-                CountryName = country.CountryName,
-            };
-                        
+                                                
             if (country != null)
             {
-               
+
+                var readCountry = new CountryModel()
+                {
+
+                    CountryID = country.CountryID,
+
+                    CountryName = country.CountryName,
+                };
+
                 foreach (var employee in country.Employees)
                 {
                     readCountry.Employees.Add(new EmployeeModel
@@ -99,7 +100,7 @@ namespace Services
 
         }
 
-        public void Update(string name, CountryModel country)
+        public int Update(string name, CountryModel country)
         {
 
             var auxCountry = new Country();
@@ -125,14 +126,24 @@ namespace Services
             }
 
             var countryUpdate = repoCountry.Set().FirstOrDefault(c => c.CountryName == name);
+        
+            if(countryUpdate != null)
+            {
+                countryUpdate.CountryID = country.CountryID;
 
-            countryUpdate.CountryID = country.CountryID;
+                countryUpdate.CountryName = country.CountryName;
 
-            countryUpdate.CountryName = country.CountryName;
+                countryUpdate.Employees = auxCountry.Employees;
 
-            countryUpdate.Employees = auxCountry.Employees;
+                repoCountry.SaveChanges();
 
-            repoCountry.SaveChanges();
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+            
 
         }
 

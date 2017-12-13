@@ -24,6 +24,6 @@ namespace Data.Entities
 
         public DateTime? Exit { get; set; }
 
-        public int WorkedHours { get; set; }
+        public decimal WorkedHours { get; set; }
     }
 }

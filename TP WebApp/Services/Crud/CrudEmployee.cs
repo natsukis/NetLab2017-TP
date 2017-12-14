@@ -53,6 +53,20 @@ namespace Services.Crud
 
         }
 
+        public List<EmployeeModel> ReadAll()
+        {
+            var listemployee = repoEmployees.ReadAll();
+
+            var listModel = new List<EmployeeModel>();
+
+            foreach (var employee in listemployee)
+            {
+                listModel.Add(new ConvertEmployee().ConvertModel(employee));
+            }
+
+            return listModel;
+
+        }
 
         public EmployeeModel Read(int id)
         {

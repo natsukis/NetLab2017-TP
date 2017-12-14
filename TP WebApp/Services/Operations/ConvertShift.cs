@@ -20,10 +20,12 @@ namespace Services.Operations
 
                 newShift.ID = shift.ID;
 
+                newShift.Name = shift.Name;
+
                 newShift.InitialHour = shift.InitialHour;
 
                 newShift.EndingHour = shift.EndingHour;
-                
+
             }
 
 
@@ -35,6 +37,8 @@ namespace Services.Operations
             var newShift = new ShiftModel()
             {
                 ID = shift.ID,
+
+                Name = shift.Name,
 
                 InitialHour = shift.InitialHour,
 

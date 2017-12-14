@@ -35,6 +35,10 @@ namespace Services.Crud
 
                         EntryDate = x.EntryDate,
 
+                        CurrentShift = new ConvertShift().Convert(x.CurrentShift),
+
+                        ValueByHour = x.ValueByHour
+
                     });
 
                 }
@@ -51,7 +55,7 @@ namespace Services.Crud
             };
 
             repoCountry.Create(newCountry);
-            
+
         }
 
 
@@ -77,10 +81,9 @@ namespace Services.Crud
                         ID = employee.ID,
                         FirstName = employee.FirstName,
                         LastName = employee.LastName,
-                     //   Country = employee.Country,
                         EntryDate = employee.EntryDate,
-
                         CurrentShift = new ConvertShift().ConvertModel(employee.CurrentShift),
+                        ValueByHour = employee.ValueByHour
                     });
                 }
 
@@ -110,6 +113,10 @@ namespace Services.Crud
 
                         EntryDate = x.EntryDate,
 
+                        CurrentShift = new ConvertShift().Convert(x.CurrentShift),
+
+                        ValueByHour = x.ValueByHour
+
                     });
 
                 }
@@ -119,7 +126,7 @@ namespace Services.Crud
 
             if (countryUpdate != null)
             {
-               
+
                 countryUpdate.CountryName = country.CountryName;
 
                 countryUpdate.Employees = auxCountry.Employees;
@@ -153,10 +160,10 @@ namespace Services.Crud
                     repoEmployees.Delete(employee);
 
                 }
-               
+
             }
             repoCountry.Delete(countryDelete);
-            
+
             return 1;
         }
 

@@ -28,11 +28,13 @@ namespace Services.Crud
 
             }
 
-            var auxShift = new ConvertShift().Convert(employee.CurrentShift);
+            //var auxShift = new ConvertShift().Convert(employee.CurrentShift);          -------------- Si desean pasar shift relleno
+            var auxShift =new ShowShift().Select(employee.CurrentShift.Name);          //--------------en caso que solo deseen enviar el nombre turno
+
 
             var newEmployee = new Employee()
             {
-                
+
                 FirstName = employee.FirstName,
 
                 LastName = employee.LastName,
@@ -42,6 +44,8 @@ namespace Services.Crud
                 EntryDate = employee.EntryDate,
 
                 CurrentShift = auxShift,
+
+                ValueByHour = employee.ValueByHour
 
             };
 
@@ -71,6 +75,8 @@ namespace Services.Crud
 
                 readEmployee.CurrentShift = new ConvertShift().ConvertModel(employee.CurrentShift);
 
+                readEmployee.ValueByHour = employee.ValueByHour;
+
                 return readEmployee;
             }
             else
@@ -94,23 +100,22 @@ namespace Services.Crud
 
             var auxShift = new ConvertShift().Convert(employee.CurrentShift);
 
-            var verification = repoEmployees.Read(employee.ID);
+            var employeeUpdate = repoEmployees.Read(employee.ID);
 
-            if (verification != null)
+            if (employeeUpdate != null)
             {
-                var employeeUpdate = new Employee
-                {
-                    FirstName = employee.FirstName,
 
-                    LastName = employee.LastName,
+                employeeUpdate.FirstName = employee.FirstName;
 
-                    Country = auxCountry,
+                employeeUpdate.LastName = employee.LastName;
 
-                    EntryDate = employee.EntryDate,
+                employeeUpdate.Country = auxCountry;
 
-                    CurrentShift = auxShift
-                };
-                
+                employeeUpdate.EntryDate = employee.EntryDate;
+
+                employeeUpdate.CurrentShift = auxShift;
+
+                employeeUpdate.ValueByHour = employee.ValueByHour;
 
                 repoEmployees.Update(employeeUpdate);
 
@@ -119,7 +124,7 @@ namespace Services.Crud
             }
 
             return 0;
-            
+
         }
 
         public int Delete(int id)
@@ -136,7 +141,7 @@ namespace Services.Crud
 
             repoEmployees.Delete(employeeDelete);
 
-            
+
             return 1;
 
         }

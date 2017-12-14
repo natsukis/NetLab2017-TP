@@ -1,4 +1,5 @@
 ﻿using Data.DataAccess;
+using Data.Entities;
 using Services.Models;
 using Services.Operations;
 using System;
@@ -15,7 +16,7 @@ namespace Services
         private ShiftControlData repoControl = new ShiftControlData();
         private EmployeesData repoEmployees = new EmployeesData();
 
-        //Este seria solo si pasara el dia, pero probablemente usemos el otro
+        //Este seria solo si pasara el dia, pero probablemente usemos el otro, va casi seguro, mas adelante se borre capaz
         public List<EmployeeModel> EmployeesPerTurn(ShiftModel shift)
         {
             var electedShift = new ConvertShift().Convert(shift);
@@ -64,15 +65,69 @@ namespace Services
             return listModel;
         }
 
+
+        public bool EntryHourVerification(ShiftControlModel shift) => shift.Entry == null;
+
         
-        public int InsertHour(ShiftControlModel shift, DateTime hour)
+        public bool ExitHourVerification(ShiftControlModel shift) => shift.Exit == null;
+      
+
+
+
+        public int InsertInitialHour(ShiftControlModel shift, DateTime hour)
         {
+            try
+            {
+                var shiftControl = new ShiftControl
+                {
+                    ID = shift.ID,
+                    Entry = hour,
+                    Exit = shift.Exit,
+                    WorkedHours = CalculateWork(shift.Exit, hour)
 
+                };
 
-
-            return 1;
+                repoControl.Update(shiftControl);
+                
+                return 1;
+            }
+            catch
+            {
+                return 0;
+            }
+           
         }
 
+        public int InsertExitHour(ShiftControlModel shift, DateTime hour)
+        {
+            try
+            {
+                var shiftControl = new ShiftControl
+                {
+                    ID = shift.ID,
+                    Entry = shift.Entry,
+                    Exit = hour,
+                    WorkedHours = CalculateWork(hour, shift.Entry)
+
+                };
+
+                repoControl.Update(shiftControl);
+
+                return 1;
+            }
+            catch
+            {
+                return 0;
+            }
+
+        }
+
+
+        public decimal CalculateWork(DateTime entry , DateTime exit)
+        {
+           
+           return exit.Hour + exit.Minute - entry.Hour - entry.Minute;
+        }
 
 
     }

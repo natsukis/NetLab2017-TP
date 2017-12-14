@@ -19,13 +19,21 @@ namespace Data.DataAccess
 
         public ShiftControl Read(DateTime date, int employeeID)
         {
-            using (var context = new Context())
+            try
             {
-                return context.ShiftControl
-                    .Include(c => c.Employee)
-                    .AsNoTracking()
-                    .Where(c => c.Day == date && c.Employee.ID == employeeID)
-                    .FirstOrDefault();
+                using (var context = new Context())
+                {
+
+                    return context.ShiftControl
+                        .Include(c => c.Employee)
+                        .AsNoTracking()
+                        .Where(c => c.Day == date && c.Employee.ID == employeeID)
+                        .First();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("There is no info with those parameters.");
             }
         }
 
@@ -55,37 +63,62 @@ namespace Data.DataAccess
 
         public void Create(ShiftControl shiftControl)
         {
-            using (var context = new Context())
+            try
             {
-                var employee = context.Employees
-                    .Where(c => c.ID == shiftControl.Employee.ID)
-                    .FirstOrDefault();
+                using (var context = new Context())
+                {
+                    var employee = context.Employees
+                        .Where(c => c.ID == shiftControl.Employee.ID)
+                        .FirstOrDefault();
 
-                shiftControl.Employee = employee;
+                    shiftControl.Employee = employee;
 
-                context.ShiftControl.Add(shiftControl);
-                context.SaveChanges();
+                    context.ShiftControl.Add(shiftControl);
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("Failed to create new shift.");
             }
         }
 
         public void Update(ShiftControl shiftControlEdited)
         {
-            var shiftControl = this.Repository.GetById(shiftControlEdited.ID);
+            try
+            {
+                var shiftControl = this.Repository.GetById(shiftControlEdited.ID);
 
-            shiftControl.Entry = shiftControlEdited.Entry;
-            shiftControl.Exit = shiftControlEdited.Exit;
-            shiftControl.WorkedHours = shiftControlEdited.WorkedHours;
+                shiftControl.Entry = shiftControlEdited.Entry;
+                shiftControl.Exit = shiftControlEdited.Exit;
+                shiftControl.WorkedHours = shiftControlEdited.WorkedHours;
 
-            Repository.Update(shiftControl);
-            Repository.SaveChanges();
+                Repository.Update(shiftControl);
+                Repository.SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Failed to save changes.");
+            }
+            
         }
 
         public void Delete(int id)
         {
-            var shiftControl = this.Repository.GetById(id);
+            try
+            {
+                var shiftControl = this.Repository.GetById(id);
 
-            Repository.Remove(shiftControl);
-            Repository.SaveChanges();
+                if (shiftControl == null)
+                    throw new Exception("The shift doesn't exist.");
+
+                Repository.Remove(shiftControl);
+                Repository.SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Failed to remove the shift.");
+            }
         }
     }
 }

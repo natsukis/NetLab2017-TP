@@ -37,7 +37,14 @@ namespace Data.DataAccess
 
         public Shift Read(int id)
         {
-            return this.Repository.GetById(id);
+            try
+            {
+                return this.Repository.GetById(id);
+            }
+            catch (Exception)
+            {
+                throw new Exception("The shift doesn't exist.");
+            }
         }
         
     }

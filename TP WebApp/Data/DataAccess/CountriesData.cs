@@ -18,15 +18,29 @@ namespace Data.DataAccess
 
         public void Create(Country country)
         {
-            this.Repository.Persist(country);
-            this.Repository.SaveChanges();
+            try
+            {
+                this.Repository.Persist(country);
+                this.Repository.SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Failed to create the new country.");
+            }
         }
 
         public Country Read(string name)
         {
-            return this.Repository.Set()
-                .Where(c => c.CountryName == name)
-                .FirstOrDefault();
+            try
+            {
+                return this.Repository.Set()
+                    .Where(c => c.CountryName == name)
+                    .First();
+            }
+            catch (Exception)
+            {
+                throw new Exception("The country doesn't exist.");
+            }
         }
 
         public List<Country> ReadAll()
@@ -34,22 +48,33 @@ namespace Data.DataAccess
             return this.Repository.Set().ToList();
         }
 
-        public void Update(Country countryUpdated)
+        public void Update(Country country)
         {
-            var country = this.Repository.GetById(countryUpdated.ID);
-
-            country.CountryName = countryUpdated.CountryName;
-
-            this.Repository.Update(country);
-            this.Repository.SaveChanges();
+            try
+            {
+                this.Repository.Update(country);
+                this.Repository.SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Failed to save changes.");
+            }
         }
 
-        public void Delete(int id)
+        public void Delete(Country country)
         {
-            var country = this.Repository.GetById(id);
+            try
+            {
+                if (country == null)
+                    throw new Exception("The country doesn't exist.");
 
-            this.Repository.Remove(country);
-            this.Repository.SaveChanges();
+                this.Repository.Remove(country);
+                this.Repository.SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Failed to remove the country.");
+            }
         }
     }
 }

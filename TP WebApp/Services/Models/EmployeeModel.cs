@@ -25,5 +25,7 @@ namespace Services
 
         public ShiftModel CurrentShift { get; set; }
 
+        public decimal ValueByHour { get; set; }
+
     }
 }

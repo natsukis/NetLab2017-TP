@@ -1,4 +1,5 @@
-﻿using Data.Entities;
+﻿using Data.DataAccess;
+using Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +10,15 @@ namespace Services.Operations
 {
    public class EmployeeID
     {
-        private Repository<Employee> repoEmployees = new Repository<Employee>();
+        private EmployeesData repoEmployees = new EmployeesData();
 
         public  int Employeeinformation(string name, string lastname)
         {
-            var employee = repoEmployees.Set().FirstOrDefault(c => c.FirstName == name && c.LastName == lastname);
+            var employee = repoEmployees.ReadAll().FirstOrDefault(c => c.FirstName == name && c.LastName == lastname);
 
             if(employee != null)
             {
-                return employee.EmployeeID;
+                return employee.ID;
             }
             else
             {

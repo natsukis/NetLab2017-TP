@@ -19,8 +19,15 @@ namespace Data.DataAccess
 
         public void Create(Employee employee)
         {
-            this.Repository.Persist(employee);
-            this.Repository.SaveChanges();
+            try
+            {
+                this.Repository.Persist(employee);
+                this.Repository.SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Failed to create the new employee");
+            }
         }
 
         public List<Employee> ReadAll()
@@ -30,50 +37,51 @@ namespace Data.DataAccess
 
         public Employee Read(int id)
         {
-            using (var context = new Context())
+            try
             {
-                return context.Employees
-                    .Include(c => c.Country)
-                    .Include(c => c.CurrentShift)
-                    .Where(c => c.ID == id)
-                    .FirstOrDefault();
+                using (var context = new Context())
+                {
+                    return context.Employees
+                        .Include(c => c.Country)
+                        .Include(c => c.CurrentShift)
+                        .Where(c => c.ID == id)
+                        .First();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("The employee doesn't exist.");
             }
         }
 
-        public void Update(Employee employeeUpdated)
+        public void Update(Employee employee)
         {
-            using (var context = new Context())
+            try
             {
-                var employee = context.Employees
-                    .Where(c => c.ID == employeeUpdated.ID)
-                    .First();
-
-                //country proxy
-                var country = context.Countries
-                    .Where(c => c.ID == employeeUpdated.Country.ID)
-                    .FirstOrDefault();
-                
-                //shift proxy
-                var currentShift = context.Shifts
-                    .Where(c => c.ID == employeeUpdated.CurrentShift.ID)
-                    .FirstOrDefault();
-
-                employee.FirstName = employeeUpdated.FirstName;
-                employee.LastName = employeeUpdated.LastName;
-                employee.Country = country;
-                employee.EntryDate = employeeUpdated.EntryDate;
-                employee.CurrentShift = currentShift;
-                employee.ValueByHour = employeeUpdated.ValueByHour;
-
-                context.SaveChanges();
+                this.Repository.Update(employee);
+                this.Repository.SaveChanges();
             }
+            catch (Exception)
+            {
+                throw new Exception("Failed to save changes.");
+            }
+            
         }
 
-        public void Delete(int id)
+        public void Delete(Employee employee)
         {
-            var employee = Repository.GetById(id);
-            Repository.Remove(employee);
-            Repository.SaveChanges();
+            try
+            {
+                if (employee == null)
+                    throw new Exception("The employee doesn't exist.");
+
+                Repository.Remove(employee);
+                Repository.SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Failed to remove the employee.");
+            }
         }
 
 

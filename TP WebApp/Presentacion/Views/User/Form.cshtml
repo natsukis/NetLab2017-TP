@@ -1,0 +1,14 @@
+﻿
+
+@using (Html.BeginForm("Adiciona", "Usuario", FormMethod.Post))
+{
+    @Html.LabelFor("Nome")
+    @Html.TextBoxFor(u => u.Nome, new { @class = "form-control" })
+    @Html.ValidationMessageFor(u => u.Nome)
+
+    @Html.LabelFor(u => u.Email, "E-mail")
+    @Html.TextBoxFor(u => u.Email, new { @class = "form-control" })
+    @Html.ValidationMessageFor(u => u.Email)
+
+    <input type="submit" value="Cadastrar" />
+}

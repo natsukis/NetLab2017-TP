@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Services;
+using Services.Crud;
+using Services.Models;
 
 namespace Presentacion.Controllers
 {
@@ -10,18 +13,16 @@ namespace Presentacion.Controllers
     {
         private CrudEmployee crudEmployee;
 
-        public EmployeeController(CrudEmployee crudEmployee)
+        public EmployeeController()
         {
-            this.crudEmployee = crudEmployee;
-        }
-        public ActionResult Form()
-        {
-            return View();
+            this.crudEmployee = new CrudEmployee();
         }
 
-        public ActionResult Add(EmployeeModel employee)
+        public ActionResult Form ()
         {
-            if()
+            crudEmployee.
         }
+
+      
     }
 }

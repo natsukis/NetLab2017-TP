@@ -9,28 +9,44 @@ using System.Threading.Tasks;
 namespace Services
 {
 
-   public class SalarySummary
+    public class SalarySummary
     {
         private ShiftControlData repoControl = new ShiftControlData();
 
-        public HourSalaryModel Summary(DateTime time, EmployeeModel employee )
+        public HourSalaryModel Summary(DateTime time, EmployeeModel employee)
         {
 
             var listShift = repoControl.ReadEmployeeByDate(time, employee.ID);
 
             var employeeSumary = new HourSalaryModel();
-            
+
             foreach (var x in listShift)
             {
 
                 employeeSumary.Salary += (x.WorkedHours * employee.ValueByHour);
-                employeeSumary.WorkHours += x.WorkedHours;
+
+                employeeSumary.Control.Add(new ShiftControlModel
+                {
+                    ID = x.ID,
+                    Day = x.Day,
+                    Entry = (DateTime)x.Entry,
+                    Exit = (DateTime)x.Exit,
+                    WorkedHours = CalculateWork((DateTime)x.Entry, (DateTime)x.Exit)
+
+                });
 
             }
 
             return employeeSumary;
 
         }
+
+        public decimal CalculateWork(DateTime entry, DateTime exit)
+        {
+
+            return exit.Hour + exit.Minute - entry.Hour - entry.Minute;
+        }
+
 
     }
 }

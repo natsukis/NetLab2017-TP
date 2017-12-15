@@ -14,22 +14,28 @@ namespace Services.Operations
 
             var readEmployee = new EmployeeModel();
 
-            readEmployee.ID = employee.ID;
+            if (employee != null)
+            {
+               
+                readEmployee.ID = employee.ID;
 
-            readEmployee.FirstName = employee.FirstName;
+                readEmployee.FirstName = employee.FirstName;
 
-            readEmployee.LastName = employee.LastName;
+                readEmployee.LastName = employee.LastName;
 
-            readEmployee.Country.CountryName = employee.Country.CountryName;
+                if (employee.Country != null)
+                readEmployee.Country.CountryName = employee.Country.CountryName;
 
-            readEmployee.EntryDate = employee.EntryDate;
+                readEmployee.EntryDate = employee.EntryDate;
 
-            readEmployee.CurrentShift = new ConvertShift().ConvertModel(employee.CurrentShift);
+                if (employee.CurrentShift != null)
+                readEmployee.CurrentShift = new ConvertShift().ConvertModel(employee.CurrentShift);
 
-            readEmployee.ValueByHour = employee.ValueByHour;
+                readEmployee.ValueByHour = employee.ValueByHour;
+                
+            }
 
             return readEmployee;
-
 
         }
 

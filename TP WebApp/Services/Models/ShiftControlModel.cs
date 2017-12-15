@@ -20,12 +20,6 @@ namespace Services.Models
 
         public decimal WorkedHours { get; set; }
 
-
-        public void CalculateWork()
-        {
-            this.WorkedHours= Exit.Hour + Exit.Minute - Entry.Hour - Entry.Minute; 
-        }
-
-
+        
     }
 }

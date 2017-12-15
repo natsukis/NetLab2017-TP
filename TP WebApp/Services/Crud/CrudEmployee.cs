@@ -75,21 +75,8 @@ namespace Services.Crud
             if (employee != null)
             {
 
-                var readEmployee = new EmployeeModel();
-
-                readEmployee.ID = employee.ID;
-
-                readEmployee.FirstName = employee.FirstName;
-
-                readEmployee.LastName = employee.LastName;
-
-                readEmployee.Country.CountryName = employee.Country.CountryName;
-
-                readEmployee.EntryDate = employee.EntryDate;
-
-                readEmployee.CurrentShift = new ConvertShift().ConvertModel(employee.CurrentShift);
-
-                readEmployee.ValueByHour = employee.ValueByHour;
+                var readEmployee = new ConvertEmployee().ConvertModel(employee));
+                
 
                 return readEmployee;
             }

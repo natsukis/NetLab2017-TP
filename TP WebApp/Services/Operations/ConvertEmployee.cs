@@ -23,10 +23,12 @@ namespace Services.Operations
 
                 readEmployee.LastName = employee.LastName;
 
+                if (employee.Country != null)
                 readEmployee.Country.CountryName = employee.Country.CountryName;
 
                 readEmployee.EntryDate = employee.EntryDate;
 
+                if (employee.CurrentShift != null)
                 readEmployee.CurrentShift = new ConvertShift().ConvertModel(employee.CurrentShift);
 
                 readEmployee.ValueByHour = employee.ValueByHour;

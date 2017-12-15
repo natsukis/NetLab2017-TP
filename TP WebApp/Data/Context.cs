@@ -8,7 +8,7 @@ namespace Data
     public class Context : DbContext
     {
         public Context()
-            : base("Employees")
+            : base("name=Employees")
         {
         }
         

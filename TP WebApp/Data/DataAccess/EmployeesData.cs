@@ -32,7 +32,15 @@ namespace Data.DataAccess
 
         public List<Employee> ReadAll()
         {
-            return this.Repository.Set().ToList();
+            //return this.Repository.Set().ToList();
+            using (var context = new Context())
+            {
+                return context.Employees
+                        .Include(c => c.Country)
+                        .Include(c => c.CurrentShift)
+                        .AsNoTracking()
+                        .ToList();
+            }
         }
 
         public Employee Read(int id)

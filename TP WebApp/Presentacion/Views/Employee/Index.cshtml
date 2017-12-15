@@ -1,0 +1,27 @@
+﻿<div>
+    <table class="table table-bordered" >
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Country</th>
+            <th>Entry Date</th>
+            <th>Shift</th>
+            <th>Value by Hour</th>
+        </tr>
+
+        @foreach (var employee in ViewBag.AllEmployees)
+            {
+            <tr>
+                <td>@employee.ID</td>
+                <td>@employee.FirstName</td>
+                <td>@employee.LastName</td>
+                <td>@employee.Country</td>
+                <td>@employee.EntryDate</td>
+                <td>@employee.CurrentShift</td>
+                <td>@employee.ValueByHour</td>
+            </tr>
+        }
+
+    </table>
+</div>

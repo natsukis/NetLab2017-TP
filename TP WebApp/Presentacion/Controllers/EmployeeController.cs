@@ -11,18 +11,15 @@ namespace Presentacion.Controllers
 {
     public class EmployeeController : Controller
     {
-        private CrudEmployee crudEmployee;
-
-        public EmployeeController()
+        public ActionResult Index()
         {
-            this.crudEmployee = new CrudEmployee();
+            CrudEmployee crudEmployee = new CrudEmployee();
+            List<EmployeeModel> allEmployees = crudEmployee.ReadAll();
+            ViewBag.AllEmployees = allEmployees;
+            return View();
+
         }
 
-        public ActionResult Form ()
-        {
-            crudEmployee.
-        }
 
-      
     }
 }

@@ -37,7 +37,7 @@ namespace Services.Operations
 
             if (shiftaux != null)
             {
-                shift = new ConvertShift().ConvertModel(shiftaux));
+                shift = new ConvertShift().ConvertModel(shiftaux);
             }
 
             return shift;

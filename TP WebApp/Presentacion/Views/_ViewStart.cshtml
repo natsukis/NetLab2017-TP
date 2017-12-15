@@ -1,24 +1,3 @@
-﻿@model Services.Models.EmployeeModel
-
-@using (Html.BeginForm("Add", "Employee", FormMethod.Post))
-{
-    @Html.LabelFor(e => e.FirstName, "Nombre:")
-    @Html.TextBoxFor(e => e.FirstName new { @class = "form-control" })
-    @Html.ValidationMessageFor(e => e.FirstName)
-
-    @Html.LabelFor(e => e.LastName, "Apellido:")
-    @Html.TextBoxFor(e => e.LastName new { @class = "form-control" })
-    @Html.ValidationMessageFor(e => e.LastName)
-
-    @Html.LabelFor(e => e.Country, "País:")
-    @Html.TextBoxFor(e => e.Country new { @class = "form-control" })
-    @Html.ValidationMessageFor(e => e.Country)
-
-    @Html.LabelFor(e => e.EntryDate, "Fecha de Ingreso:")
-    @Html.TextBoxFor(e => e.EntryDate new { @class = "form-control" })
-    @Html.ValidationMessageFor(e => e.EntryDate)
-
-    <input type="submit" value="Enviar"/>
-
-
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }

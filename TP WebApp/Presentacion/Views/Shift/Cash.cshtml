@@ -1,23 +1,30 @@
 ﻿@model List<Services.EmployeeModel>
 
-<div class="row">
-    <div class="col-sm-4"></div>
+<div>
 
-    <div class="col-sm-4">
-        <form method="post">
+    <form method="post">
 
-            <div class="form-group">
-                <label for="Operation">Select Employee:</label>
-                <select class="form-control" id="Employee">
-                    @foreach (var employee in Model)
-                    {
-                        <option>@employee.FirstName @employee.LastName</option>
-                    }
-                </select>
-            </div>
+        <div class="form-group">
+            <label for="employeeID">Employee:</label>
+            <select class="form-control" id="employeeID" name="employeeID">
+                @foreach (var employee in Model)
+                {
+                    <option value="@employee.ID">@employee.FirstName @employee.LastName</option>
+                }
+            </select>
+        </div>
 
-        </form>
-    </div>
+        <div class="form-group">
+            <label for="month">Month:</label>
+            <input class="form-control" type="number" name="month" id="month" required value="1" min="1" max="12" />
+        </div>
 
-    <div class="col-sm-4"></div>
+        <div class="form-group">
+            <label for="year">Year:</label>
+            <input class="form-control" type="number" name="year" id="year" required value="@DateTime.Today.Year" min="1950" max="@DateTime.Today.Year" />
+        </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        
+    </form>
+
 </div>

@@ -40,7 +40,6 @@ namespace Presentacion.Controllers
         [HttpPost]
         public ActionResult Cash(int month, int year, int employeeID)
         {
-            
             return View();
         }
     }

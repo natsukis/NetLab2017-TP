@@ -1,0 +1,23 @@
+﻿@model List<Services.EmployeeModel>
+
+<div class="row">
+    <div class="col-sm-4"></div>
+
+    <div class="col-sm-4">
+        <form method="post">
+
+            <div class="form-group">
+                <label for="Operation">Select Employee:</label>
+                <select class="form-control" id="Employee">
+                    @foreach (var employee in Model)
+                    {
+                        <option>@employee.FirstName @employee.LastName</option>
+                    }
+                </select>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="col-sm-4"></div>
+</div>

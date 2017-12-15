@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Services;
+using Services.Crud;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +10,13 @@ namespace Presentacion.Controllers
 {
     public class ShiftController : Controller
     {
+        private HourRegister ShiftService;
+
+        public ShiftController()
+        {
+            this.ShiftService = new HourRegister();
+        }
+
         // Read shifts
         public ActionResult Index()
         {
@@ -22,6 +31,14 @@ namespace Presentacion.Controllers
 
         //Menu de cobrar
         public ActionResult Cash()
+        {
+            CrudEmployee service = new CrudEmployee();
+            var employeeList = service.ReadAll();
+            return View(employeeList);
+        }
+
+        [HttpPost]
+        public ActionResult Cash(int month, int year, int employeeID)
         {
             
             return View();

@@ -192,11 +192,12 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_MenuSuperior.cshtml" />
     <Content Include="Views\Employee\Form.cshtml" />
+    <Content Include="Views\Shared\MsgAlert.cshtml" />
+    <Content Include="Views\Shift\Cash.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Shift\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

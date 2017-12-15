@@ -8,9 +8,10 @@ namespace Services.Models
 {
    public class HourSalaryModel
     {
-        public decimal WorkHours { get; set; }
-
+       
         public decimal Salary { get; set; }
+
+        public List<ShiftControlModel> Control { get; set; }
 
     }
 }

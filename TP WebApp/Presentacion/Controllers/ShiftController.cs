@@ -10,11 +10,11 @@ namespace Presentacion.Controllers
 {
     public class ShiftController : Controller
     {
-        private HourRegister ShiftService;
+        private SalarySummary SalaryService;
 
         public ShiftController()
         {
-            this.ShiftService = new HourRegister();
+            this.SalaryService = new SalarySummary();
         }
 
         // Read shifts

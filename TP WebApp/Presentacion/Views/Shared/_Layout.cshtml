@@ -10,9 +10,13 @@
 <body>
     @Html.Partial("_MenuSuperior")
     <div class="container">
-        <main class="col-sm-8">
-            @RenderBody()
-        </main>
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <main class="col-sm-8">
+                @RenderBody()
+            </main>
+            <div class="col-sm-2"></div>
+        </div>
     </div>
 </body>
 </html>

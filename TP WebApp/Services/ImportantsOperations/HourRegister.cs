@@ -43,7 +43,7 @@ namespace Services
             var electedShift = new ConvertShift().Convert(shift);
 
             var listEmployee = repoEmployees.ReadAll().Where(c => c.CurrentShift == electedShift);
-
+                       
             var listModel = new List<ShiftControlModel>();
 
             if (listEmployee != null)
@@ -58,10 +58,20 @@ namespace Services
                         Day = DateTime.Today
 
                     });
+
+                    var shifttData = new ShiftControl
+                    {
+                        Employee = x,
+                        Day = DateTime.Today
+
+                    };
+
+                    repoControl.Create(shifttData);
+
                 }
+                   
             }
-
-
+            
             return listModel;
         }
 

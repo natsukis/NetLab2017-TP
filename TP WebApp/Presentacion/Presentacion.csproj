@@ -214,12 +214,9 @@
     <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.2.1.min.map" />
     <Content Include="Views\Shift\CashResult.cshtml" />
-<<<<<<< .merge_file_a09988
     <Content Include="Views\Shift\Index.cshtml" />
     <Content Include="Views\Shift\Register.cshtml" />
-=======
     <Content Include="Views\Employee\Index.cshtml" />
->>>>>>> .merge_file_a08060
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

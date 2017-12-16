@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Services;
+using Services.Crud;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +10,17 @@ namespace Presentacion.Controllers
 {
     public class CountryController : Controller
     {
+
+        private CrudCountry crudCountry;
+
+        public CountryController()
+        {
+            crudCountry = new CrudCountry();
+        }
+
         public ActionResult Index()
         {
-            return View();
+            return View(crudCountry.GetAll());
         }
 
         public ActionResult Create()
@@ -19,9 +29,10 @@ namespace Presentacion.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create()
+        public ActionResult Create(CountryModel countryModel)
         {
-            return View();
+            crudCountry.Create(countryModel);
+            return View("Index");
         }
 
         public ActionResult Update()
@@ -29,15 +40,16 @@ namespace Presentacion.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Update()
-        {
-            return View();
-        }
+        //[HttpPost]
+        //public ActionResult Update()
+        //{
+        //    return View();
+        //}
 
-        public ActionResult Delete()
+        public ActionResult Delete(String countryName)
         {
-            return View();
+            crudCountry.Delete(countryName);
+            return View("Index",crudCountry.GetAll());
         }
 
         

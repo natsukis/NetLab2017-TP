@@ -1,4 +1,4 @@
-﻿@*@model IEnumerable<>*@ //falta servicio de paises
+﻿@model List<Services.CountryModel>
 
 <h1>Country</h1>
 
@@ -12,10 +12,10 @@
         @foreach (var pais in this.Model)
         {
             <tr>
-                <td>@pais.Nombre</td>
+                <td>@pais.CountryName</td>
                 <td>
-                    <a href="/country/delete?newsID=@pais.Id">Delete</a>
-                    <a href="/country/update?newsID=@pais.Id">Update</a>
+                    <a href="/country/delete?ID=@pais.CountryName">Delete</a>
+                    <a href="/country/update?ID=@pais.ID">Update</a>
                 </td>
             </tr>
         }

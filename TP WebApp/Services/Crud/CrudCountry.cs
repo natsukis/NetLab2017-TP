@@ -167,5 +167,14 @@ namespace Services.Crud
             return 1;
         }
 
+        public List<CountryModel> GetAll()
+        {
+            return repoCountry.ReadAll().Select(x => new CountryModel
+            {
+                ID = x.ID,
+                CountryName = x.CountryName
+            }).ToList();
+        }
+
     }
 }

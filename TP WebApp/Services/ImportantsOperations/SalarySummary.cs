@@ -25,7 +25,7 @@ namespace Services
 
                 employeeSumary.Salary += (x.WorkedHours * employee.ValueByHour);
 
-                employeeSumary.Control.Add(new ShiftControlModel
+                employeeSumary.Control.Add(new ShiftControlModel()
                 {
                     ID = x.ID,
                     Day = x.Day,
@@ -36,6 +36,8 @@ namespace Services
                 });
 
             }
+
+            employeeSumary.Employee = employee;
 
             return employeeSumary;
 

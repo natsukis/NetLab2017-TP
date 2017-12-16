@@ -75,7 +75,7 @@ namespace Services.Crud
             if (employee != null)
             {
 
-                var readEmployee = new ConvertEmployee().ConvertModel(employee));
+                var readEmployee = new ConvertEmployee().ConvertModel(employee);
                 
 
                 return readEmployee;

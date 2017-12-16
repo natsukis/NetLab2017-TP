@@ -1,30 +1,33 @@
 ﻿@model List<Services.EmployeeModel>
 
-<div>
+<div class="row">
 
-    <form method="post">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+        <form method="post" action="/shift/cashresult">
 
-        <div class="form-group">
-            <label for="employeeID">Employee:</label>
-            <select class="form-control" id="employeeID" name="employeeID">
-                @foreach (var employee in Model)
-                {
-                    <option value="@employee.ID">@employee.FirstName @employee.LastName</option>
-                }
-            </select>
-        </div>
+            <div class="form-group">
+                <label for="employeeID">Employee:</label>
+                <select class="form-control" id="employeeID" name="employeeID">
+                    @foreach (var employee in Model)
+                    {
+                        <option value="@employee.ID">@employee.FirstName @employee.LastName</option>
+                    }
+                </select>
+            </div>
 
-        <div class="form-group">
-            <label for="month">Month:</label>
-            <input class="form-control" type="number" name="month" id="month" required value="1" min="1" max="12" />
-        </div>
+            <div class="form-group">
+                <label for="month">Month:</label>
+                <input class="form-control" type="number" name="month" id="month" required value="1" min="1" max="12" />
+            </div>
 
-        <div class="form-group">
-            <label for="year">Year:</label>
-            <input class="form-control" type="number" name="year" id="year" required value="@DateTime.Today.Year" min="1950" max="@DateTime.Today.Year" />
-        </div>
+            <div class="form-group">
+                <label for="year">Year:</label>
+                <input class="form-control" type="number" name="year" id="year" required value="@DateTime.Today.Year" min="1950" max="@DateTime.Today.Year" />
+            </div>
             <button type="submit" class="btn btn-primary">Submit</button>
-        
-    </form>
 
+        </form>
+    </div>
+    <div class="col-sm-2"></div>
 </div>

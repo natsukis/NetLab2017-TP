@@ -10,12 +10,6 @@ namespace Presentacion.Controllers
 {
     public class ShiftController : Controller
     {
-        private SalarySummary SalaryService;
-
-        public ShiftController()
-        {
-            this.SalaryService = new SalarySummary();
-        }
 
         // Read shifts
         public ActionResult Index()
@@ -38,8 +32,17 @@ namespace Presentacion.Controllers
         }
 
         [HttpPost]
-        public ActionResult Cash(int month, int year, int employeeID)
+        public ActionResult CashResult(int month, int year, int employeeID)
         {
+            CrudEmployee service = new CrudEmployee();
+            var employee = service.Read(employeeID);
+
+            SalarySummary SalaryService = new SalarySummary();
+            var date = new DateTime(year,month,1);
+
+
+            var test = SalaryService.Summary(date, employee);
+
             return View();
         }
     }

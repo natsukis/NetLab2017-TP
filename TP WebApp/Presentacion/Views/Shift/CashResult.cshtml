@@ -1,3 +1,32 @@
-﻿@model List<Services.Models.ShiftControlModel>
+﻿@model Services.Models.HourSalaryModel
+
+<div class="row">
+
+    <div class="col-sm-2"></div>
+
+    <div class="col-sm-8">
+        <h1>@Model.Employee.FirstName @Model.Employee.LastName</h1>
+        <table class="table table-condensed">
+            <tr>
+                <th>Day</th>
+                <th>Hours</th>
+            </tr>
+            @foreach (var s in Model.Control)
+            {
+                <tr>
+                    <td>@s.Day.Day/@s.Day.Month</td>
+                    <td>@s.WorkedHours Hs</td>
+                </tr>
+            }
+            <tr>
+                <td>Total: $@decimal.Round(@Model.Salary, 2)</td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="col-sm-2"></div>
+
+</div>
 
 

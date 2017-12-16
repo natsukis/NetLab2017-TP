@@ -41,9 +41,9 @@ namespace Presentacion.Controllers
             var date = new DateTime(year,month,1);
 
 
-            var test = SalaryService.Summary(date, employee);
+            var summary = SalaryService.Summary(date, employee);
 
-            return View();
+            return View(summary);
         }
     }
 }

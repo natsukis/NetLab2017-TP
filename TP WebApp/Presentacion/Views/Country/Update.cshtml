@@ -1,0 +1,15 @@
+﻿@model Services.Dto //falta servicios de pais
+
+<form action="/country/update" method="post">
+    <div>
+        <label>Id</label>
+        <input type="text" name="Id" value="@Model.Id" />
+    </div>
+    <div>
+        <label>Title</label>
+        <input type="text" name="Name" value="@Model.Nombre" />
+    </div>
+    <div>
+        <button type="submit">Save</button>
+    </div>
+</form>

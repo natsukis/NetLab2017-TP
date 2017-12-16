@@ -1,0 +1,25 @@
+﻿@*@model IEnumerable<>*@ //falta servicio de paises
+
+<h1>Country</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Country</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pais in this.Model)
+        {
+            <tr>
+                <td>@pais.Nombre</td>
+                <td>
+                    <a href="/country/delete?newsID=@pais.Id">Delete</a>
+                    <a href="/country/update?newsID=@pais.Id">Update</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="/country/create">Crear</a>

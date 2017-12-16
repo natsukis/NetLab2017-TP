@@ -32,23 +32,25 @@ namespace Presentacion.Controllers
         public ActionResult Create(CountryModel countryModel)
         {
             crudCountry.Create(countryModel);
-            return View("Index");
+            return View("Index",crudCountry.GetAll());
         }
 
-        public ActionResult Update()
+        public ActionResult Update(int countryID)
         {
-            return View();
+            var country = crudCountry.Read(countryID);
+            return View(country);
         }
 
-        //[HttpPost]
-        //public ActionResult Update()
-        //{
-        //    return View();
-        //}
-
-        public ActionResult Delete(String countryName)
+        [HttpPost]
+        public ActionResult Update(CountryModel countryModel)
         {
-            crudCountry.Delete(countryName);
+            crudCountry.Update(countryModel);
+            return View("Index",crudCountry.GetAll());
+        }
+
+        public ActionResult Delete(int countryID)
+        {
+            crudCountry.Delete(countryID);
             return View("Index",crudCountry.GetAll());
         }
 

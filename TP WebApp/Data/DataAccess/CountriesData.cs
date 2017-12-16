@@ -29,12 +29,12 @@ namespace Data.DataAccess
             }
         }
 
-        public Country Read(string name)
+        public Country Read(int id)
         {
             try
             {
                 return this.Repository.Set()
-                    .Where(c => c.CountryName == name)
+                    .Where(c => c.ID == id)
                     .First();
             }
             catch (Exception)

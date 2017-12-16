@@ -62,9 +62,9 @@ namespace Services.Crud
 
 
 
-        public CountryModel Read(string name)
+        public CountryModel Read(int id)
         {
-            var country = repoCountry.Read(name);
+            var country = repoCountry.Read(id);
 
             if (country != null)
             {
@@ -94,63 +94,78 @@ namespace Services.Crud
                 return null;
             }
         }
-        public int Update(string name, CountryModel country)
+        //public int Update(string name, CountryModel country)
+        //{
+
+        //    var auxCountry = new Country();
+        //    if (country.Employees != null)
+        //    {
+        //        foreach (var x in country.Employees)
+        //        {
+
+        //            auxCountry.Employees.Add(new Employee()
+        //            {
+        //                ID = x.ID,
+
+        //                FirstName = x.FirstName,
+
+        //                LastName = x.LastName,
+
+        //                EntryDate = x.EntryDate,
+
+        //                CurrentShift = new ConvertShift().Convert(x.CurrentShift),
+
+        //                ValueByHour = x.ValueByHour
+
+        //            });
+
+        //        }
+        //    }
+
+        //    var countryUpdate = repoCountry.Read(name);
+
+        //    if (countryUpdate != null)
+        //    {
+
+        //        countryUpdate.CountryName = country.CountryName;
+
+        //        countryUpdate.Employees = auxCountry.Employees;
+
+        //        repoCountry.Update(countryUpdate);
+
+        //        return 1;
+        //    }
+        //    else
+        //    {
+        //        return 0;
+        //    }
+
+
+
+
+        //}
+        public void Update(CountryModel countryModel)
         {
+            var country = repoCountry.Read(countryModel.ID);
 
-            var auxCountry = new Country();
-            if (country.Employees != null)
-            {
-                foreach (var x in country.Employees)
-                {
+            if (country == null)
+                throw new Exception("La noticia no existe");
 
-                    auxCountry.Employees.Add(new Employee()
-                    {
-                        ID = x.ID,
+            country.CountryName = countryModel.CountryName;
+            country.ID = countryModel.ID;
+            
 
-                        FirstName = x.FirstName,
-
-                        LastName = x.LastName,
-
-                        EntryDate = x.EntryDate,
-
-                        CurrentShift = new ConvertShift().Convert(x.CurrentShift),
-
-                        ValueByHour = x.ValueByHour
-
-                    });
-
-                }
-            }
-
-            var countryUpdate = repoCountry.Read(name);
-
-            if (countryUpdate != null)
-            {
-
-                countryUpdate.CountryName = country.CountryName;
-
-                countryUpdate.Employees = auxCountry.Employees;
-
-                repoCountry.Update(countryUpdate);
-
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
-
-
+            repoCountry.Update(country);
         }
-        public int Delete(string name)
+        public int Delete(int id)
         {
-            var countryDelete = repoCountry.Read(name);
+            var countryDelete = repoCountry.Read(id);
             if (countryDelete == null)
             {
                 return 0;
             }
 
-            var auxDelete = repoEmployees.ReadAll().Where(c => c.Country.CountryName == name);
+            var auxDelete = repoEmployees.ReadAll().Where(c => c.Country.ID == id);
 
             if (auxDelete != null)
             {

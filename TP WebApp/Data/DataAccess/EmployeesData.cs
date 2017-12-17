@@ -21,8 +21,6 @@ namespace Data.DataAccess
         {
             try
             {
-                //this.Repository.Persist(employee);
-                //this.Repository.SaveChanges();
                 using (var context = new Context())
                 {
                     var country = context.Countries
@@ -83,8 +81,32 @@ namespace Data.DataAccess
         {
             try
             {
-                this.Repository.Update(employee);
-                this.Repository.SaveChanges();
+                using (var context = new Context())
+                {
+
+                    var employeeProxy = context.Employees
+                        .Where(c => c.ID == employee.ID)
+                        .First();
+
+                    var country = context.Countries
+                        .Where(c => c.CountryName == employee.Country.CountryName)
+                        .First();
+
+                    employeeProxy.Country = country;
+
+                    var shift = context.Shifts
+                        .Where(c => c.ID == employee.CurrentShift.ID)
+                        .First();
+
+                    employeeProxy.CurrentShift = shift;
+
+                    employeeProxy.FirstName = employee.FirstName;
+                    employeeProxy.LastName = employee.LastName;
+                    employeeProxy.EntryDate = employee.EntryDate;
+                    employeeProxy.ValueByHour = employee.ValueByHour;
+
+                    context.SaveChanges();
+                }
             }
             catch (Exception)
             {

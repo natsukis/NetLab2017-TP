@@ -53,12 +53,23 @@ namespace Presentacion.Controllers
             }
         }
 
-        public ActionResult ModifyEmployee(EmployeeModel employee)
+        public ActionResult ModifyEmployee()
         {
             ViewBag.AllEmployees = crudEmployee.ReadAll();
             return View(); 
                 
         }
-        
+
+        [HttpPost]
+        public ActionResult ModifyEmployee(int ID)
+        {
+            var employee = crudEmployee.Read(ID);
+
+            if (employee != null)
+                ViewBag.Selected = true;
+
+            return View(employee);
+        }
+
     }
 }

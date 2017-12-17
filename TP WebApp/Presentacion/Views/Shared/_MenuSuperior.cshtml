@@ -46,12 +46,20 @@
         display: block;
     }
 
+    .navbar-nav > li > a{
+        color:white !important;
+    }
+
+        .navbar-nav > li > a:hover {
+            background-color: blue !important;
+        }
+
 </style>
 
 
-<nav>
+<nav class="navbar navbar-default">
     <div class="container-fluid">
-        <ul id="lista" class="nav nav-tabs">
+        <ul id="lista" class="nav navbar-nav">
             <li>@Html.ActionLink("Home", "Index", "Home")</li>
             <li>
                 <div class="dropdown">
@@ -64,11 +72,10 @@
                         <a href="/Employee/Index">Show All</a>
                     </div>
                 </div>
-
             </li>
             <li>
                 <div class="dropdown">
-                    <button class="dropbtn">Countrys</button>
+                    <button class="dropbtn">Countries</button>
                     <div class="dropdown-content">
                         <a href="/Country/Index">Show All</a>
                         <a href="/Country/Create">Create</a>
@@ -76,7 +83,6 @@
                 </div>
 
             </li>
-
             <li>@Html.ActionLink("Hour Register", "Cash", "Shift")</li>
             <li>@Html.ActionLink("Employee Salary", "Cash", "Shift")</li>
 

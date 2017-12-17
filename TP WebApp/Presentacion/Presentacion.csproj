@@ -224,12 +224,7 @@
     <Content Include="Views\Shift\EmployeeTurn.cshtml" />
     <Content Include="Views\Shift\Register.cshtml" />
     <Content Include="Views\Shift\ShiftControl.cshtml" />
-    <Content Include="Views\Shift\Register.cshtml" />
-    <Content Include="Views\Country\Create.cshtml" />
-    <Content Include="Views\Country\Index.cshtml" />
-    <Content Include="Views\Country\Update.cshtml" />
     <Content Include="Views\Employee\Form.cshtml" />
-    <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\ModifyEmployee.cshtml" />
 
   </ItemGroup>

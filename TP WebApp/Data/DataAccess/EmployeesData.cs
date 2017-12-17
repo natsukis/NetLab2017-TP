@@ -21,8 +21,25 @@ namespace Data.DataAccess
         {
             try
             {
-                this.Repository.Persist(employee);
-                this.Repository.SaveChanges();
+                //this.Repository.Persist(employee);
+                //this.Repository.SaveChanges();
+                using (var context = new Context())
+                {
+                    var country = context.Countries
+                        .Where(c => c.CountryName == employee.Country.CountryName)
+                        .First();
+
+                    employee.Country = country;
+
+                    var shift = context.Shifts
+                        .Where(c => c.ID == employee.CurrentShift.ID)
+                        .First();
+
+                    employee.CurrentShift = shift;
+
+                    context.Employees.Add(employee);
+                    context.SaveChanges();
+                }
             }
             catch (Exception)
             {

@@ -16,9 +16,8 @@ namespace Services
         private ShiftControlData repoControl = new ShiftControlData();
         private EmployeesData repoEmployees = new EmployeesData();
         private ShiftsData repoShift = new ShiftsData();
-
-
-        //Este recibe el dia y pasa como la hoja de horarios, probablemente sea el gran elegido
+        
+        
         public List<ShiftControlModel> EmployeesHours(int shift)
         {
             var electedShift = repoShift.Read(shift);
@@ -58,12 +57,9 @@ namespace Services
 
 
         public bool EntryHourVerification(ShiftControlModel shift) => shift.Entry == null;
-
-        
+                
         public bool ExitHourVerification(ShiftControlModel shift) => shift.Exit == null;
       
-
-
 
         public int InsertInitialHour(ShiftControlModel shift, DateTime hour)
         {
@@ -112,8 +108,7 @@ namespace Services
             }
 
         }
-
-
+        
         public decimal CalculateWork(DateTime entry , DateTime exit)
         {
            

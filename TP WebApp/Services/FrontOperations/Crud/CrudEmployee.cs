@@ -22,14 +22,12 @@ namespace Services.Crud
             if (employee.Country != null)
             {
 
-                auxCountry.ID = employee.Country.ID;
-
                 auxCountry.CountryName = employee.Country.CountryName;
 
             }
 
             //var auxShift = new ConvertShift().Convert(employee.CurrentShift);          -------------- Si desean pasar shift relleno
-            var auxShift =new ShowShift().Select(employee.CurrentShift.Name);          //--------------en caso que solo deseen enviar el nombre turno
+            var auxShift = new ShowShift().Select(employee.CurrentShift.Name);          //--------------en caso que solo deseen enviar el nombre turno
 
 
             var newEmployee = new Employee()
@@ -76,7 +74,7 @@ namespace Services.Crud
             {
 
                 var readEmployee = new ConvertEmployee().ConvertModel(employee);
-                
+
 
                 return readEmployee;
             }
@@ -86,15 +84,13 @@ namespace Services.Crud
             }
         }
 
-        public int Update(int id, EmployeeModel employee)
+        public int Update(EmployeeModel employee)
         {
 
             var auxCountry = new Country();
 
             if (employee.Country != null)
             {
-                auxCountry.ID = employee.Country.ID;
-
                 auxCountry.CountryName = employee.Country.CountryName;
 
             }
@@ -131,17 +127,14 @@ namespace Services.Crud
         public int Delete(int id)
         {
 
-            var employeeDelete = repoEmployees.Read(id);
+            //var employeeDelete = repoEmployees.Read(id);
 
-            if (employeeDelete == null)
-            {
-                return 0;
-            }
+            //if (employeeDelete == null)
+            //{
+            //    return 0;
+            //}
 
-            //revisar cuando este la bd que elimine bien o ver si hay que eliminar otra cosa antes
-
-            repoEmployees.Delete(employeeDelete);
-
+            repoEmployees.Delete(id);
 
             return 1;
 

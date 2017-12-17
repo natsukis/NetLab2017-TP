@@ -1,9 +1,92 @@
-﻿<nav>
+﻿<style>
+
+    .container-fluid {
+        background-color: darkblue;
+        color: white;
+        font-size: 16px;
+        border: none;
+    }
+
+   
+    .dropbtn {
+        background-color: darkblue;
+        color: white;
+        padding: 14px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: darkblue;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+            .dropdown-content a:hover {
+                background-color: blue
+            }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .navbar-nav > li > a{
+        color:white !important;
+    }
+
+        .navbar-nav > li > a:hover {
+            background-color: blue !important;
+        }
+
+</style>
+
+
+<nav class="navbar navbar-default">
     <div class="container-fluid">
-        <ul class="nav nav-tabs">
-            <li>@Html.ActionLink("Employee", "Index", "Employee")</li>
-            <li>@Html.ActionLink("Register Country", "Index", "CountryRegister")</li> 
-            <li>@Html.ActionLink("Register Time", "Index", "TimeRegister")</li>
+        <ul id="lista" class="nav navbar-nav">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>
+                <div class="dropdown">
+                    <button class="dropbtn">Employees</button>
+                    <div class="dropdown-content">
+                        <a href="/Employee/Form">Create</a>
+                        <a href="#">Read</a>
+                        <a href="#">Update</a>
+                        <a href="#">Delete</a>
+                        <a href="/Employee/Index">Show All</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="dropdown">
+                    <button class="dropbtn">Countries</button>
+                    <div class="dropdown-content">
+                        <a href="/Country/Index">Show All</a>
+                        <a href="/Country/Create">Create</a>
+                    </div>
+                </div>
+
+            </li>
+            <li>@Html.ActionLink("Hour Register", "Cash", "Shift")</li>
+            <li>@Html.ActionLink("Employee Salary", "Cash", "Shift")</li>
+
         </ul>
     </div>
 </nav>
+

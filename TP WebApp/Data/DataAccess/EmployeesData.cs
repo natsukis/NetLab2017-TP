@@ -21,8 +21,23 @@ namespace Data.DataAccess
         {
             try
             {
-                this.Repository.Persist(employee);
-                this.Repository.SaveChanges();
+                using (var context = new Context())
+                {
+                    var country = context.Countries
+                        .Where(c => c.CountryName == employee.Country.CountryName)
+                        .First();
+
+                    employee.Country = country;
+
+                    var shift = context.Shifts
+                        .Where(c => c.ID == employee.CurrentShift.ID)
+                        .First();
+
+                    employee.CurrentShift = shift;
+
+                    context.Employees.Add(employee);
+                    context.SaveChanges();
+                }
             }
             catch (Exception)
             {
@@ -66,32 +81,56 @@ namespace Data.DataAccess
         {
             try
             {
-                this.Repository.Update(employee);
-                this.Repository.SaveChanges();
+                using (var context = new Context())
+                {
+
+                    var employeeProxy = context.Employees
+                        .Where(c => c.ID == employee.ID)
+                        .First();
+
+                    var country = context.Countries
+                        .Where(c => c.CountryName == employee.Country.CountryName)
+                        .First();
+
+                    employeeProxy.Country = country;
+
+                    var shift = context.Shifts
+                        .Where(c => c.ID == employee.CurrentShift.ID)
+                        .First();
+
+                    employeeProxy.CurrentShift = shift;
+
+                    employeeProxy.FirstName = employee.FirstName;
+                    employeeProxy.LastName = employee.LastName;
+                    employeeProxy.EntryDate = employee.EntryDate;
+                    employeeProxy.ValueByHour = employee.ValueByHour;
+
+                    context.SaveChanges();
+                }
             }
             catch (Exception)
             {
                 throw new Exception("Failed to save changes.");
             }
-            
+
         }
 
-        public void Delete(Employee employee)
+        public void Delete(int id)
         {
-            try
+            using (var context = new Context())
             {
-                if (employee == null)
-                    throw new Exception("The employee doesn't exist.");
 
-                Repository.Remove(employee);
-                Repository.SaveChanges();
+                var employee = context.Employees
+                    .Where(c => c.ID == id)
+                    .FirstOrDefault();
+
+                if (employee != null)
+                {
+                    Repository.Remove(employee);
+                    Repository.SaveChanges();
+                }
             }
-            catch (Exception)
-            {
-                throw new Exception("Failed to remove the employee.");
-            }
+
         }
-
-
     }
 }

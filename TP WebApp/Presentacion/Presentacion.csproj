@@ -217,11 +217,12 @@
     <Content Include="Views\Shift\CashResult.cshtml" />
     <Content Include="Views\Shift\Index.cshtml" />
     <Content Include="Views\Shift\Register.cshtml" />
-    <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Country\Create.cshtml" />
     <Content Include="Views\Country\Index.cshtml" />
     <Content Include="Views\Country\Update.cshtml" />
     <Content Include="Views\Employee\Form.cshtml" />
+    <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\Employee\ModifyEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -235,6 +236,9 @@
       <Project>{9561f825-7c9f-4b5f-a57c-008f6378a1f0}</Project>
       <Name>Services</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

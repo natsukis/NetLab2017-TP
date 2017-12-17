@@ -1,0 +1,37 @@
+﻿  <form action="/Employee/Add" method="post">
+
+        <label>ID:</label>
+        <input id="id" name="employee.ID" /><br/>
+        
+        <label>First Name:</label>
+        <input id="name" name="employee.FirstName" /><br />
+
+        <label>Last Name:</label>
+        <input id="lastName" name="employee.LastName" /><br />
+
+        <label>Country:</label>
+        <select id="country" name="employee.Country.CountryName" /><br />
+            @foreach(var country in ViewBag.AllCountries)
+            {
+               <option value=@country.CountryName>@country.CountryName</option>
+            }
+        
+      </select>
+
+        <label>Entry Date:</label>
+        <input id="entryDate" name="employee.EntryDate" /><br />
+
+        <label>Shift:</label>
+        <select id="shift" name="employee.CurrentShift.Name" /><br />
+             @foreach(var shift in ViewBag.AllShifts)
+            {
+               <option value=@shift.Name>@shift.Name</option>
+            }
+      
+      </select>
+
+        <label>Value by Hour:</label>
+        <input id="valueByHour" name="employee.ValueByHour" />
+
+        <input type="submit" value="Add" />
+</form>

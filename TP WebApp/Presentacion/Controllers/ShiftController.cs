@@ -1,5 +1,7 @@
 ﻿using Services;
 using Services.Crud;
+using Services.Models;
+using Services.Operations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,15 @@ namespace Presentacion.Controllers
 {
     public class ShiftController : Controller
     {
+        private HourRegister hourRegister;
+        private ShowShift showShift;
+
+        public ShiftController()
+        {
+            hourRegister = new HourRegister();
+            showShift = new ShowShift();
+        }
+    
 
         // Read shifts
         public ActionResult Index()
@@ -20,7 +31,33 @@ namespace Presentacion.Controllers
         //Menu de registro de horarios
         public ActionResult Register()
         {
-            return View();
+            return View(showShift.ShowAll());
+        }
+
+        [HttpPost]
+        public ActionResult Register(int registerID)
+        {
+            return View("EmployeeTurn",hourRegister.EmployeesHours(registerID));
+        }
+
+        public ActionResult ShiftControl(int shiftControlModel)
+        {
+            return View("ShiftControl", shiftControlModel);
+        }
+
+        [HttpPost]
+        public ActionResult ShiftControlInsert(ShiftControlModel shiftControlModel)
+        {
+            if (!hourRegister.EntryHourVerification(shiftControlModel))
+            {
+                hourRegister.InsertInitialHour(shiftControlModel, shiftControlModel.Entry);
+            }
+            if (hourRegister.EntryHourVerification(shiftControlModel))
+            {
+                hourRegister.InsertExitHour(shiftControlModel, shiftControlModel.Exit);
+            }
+
+            return View("EmployeeTurn",showShift.ShowAll());
         }
 
         //Menu de cobrar

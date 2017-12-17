@@ -151,6 +151,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CountryController.cs" />
+    <Compile Include="Controllers\EmployeeTurnController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\ShiftController.cs" />
@@ -216,11 +217,13 @@
     <Content Include="Scripts\jquery-3.2.1.min.map" />
     <Content Include="Views\Shift\CashResult.cshtml" />
     <Content Include="Views\Shift\Index.cshtml" />
-    <Content Include="Views\Shift\Register.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Country\Create.cshtml" />
     <Content Include="Views\Country\Index.cshtml" />
     <Content Include="Views\Country\Update.cshtml" />
+    <Content Include="Views\Shift\EmployeeTurn.cshtml" />
+    <Content Include="Views\Shift\Register.cshtml" />
+    <Content Include="Views\Shift\ShiftControl.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

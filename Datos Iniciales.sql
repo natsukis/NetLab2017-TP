@@ -1,4 +1,5 @@
-﻿USE Employees
+﻿
+USE Employees
 
 DELETE FROM dbo.Employees
 DELETE FROM dbo.Shifts

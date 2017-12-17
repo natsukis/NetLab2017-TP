@@ -1,0 +1,19 @@
+﻿@model Services.Models.ShiftControlModel
+
+<form action="/shift/shiftcontrolinsert" method="post">
+    <div>
+        <label>Id</label>
+        <input type="text" name="ID" value="@Model.ID" />
+    </div>
+    <div>
+        <label>Entry</label>
+        <input type="text" name="Entry" value="@Model.Entry" />
+    </div>
+    <div>
+        <label>Exit</label>
+        <input type="text" name="Exit" value="@Model.Exit" />
+    </div>
+    <div>
+        <button type="submit">Save</button>
+    </div>
+</form>

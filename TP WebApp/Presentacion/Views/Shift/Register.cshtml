@@ -1,16 +1,14 @@
-﻿<h1>Turn</h1>
+﻿@model List<Services.Models.ShiftModel>
 
-
-<form method="post">
-
+<form action="/shift/register" method="post">
     <div class="form-group">
-        <label for="employeeID">Turn:</label>
-        <select class="form-control" id="employeeID" name="employeeID">
-            @foreach (var employee in Model)
+        <label for="registerID">Turn:</label>
+        <select class="form-control" name="registerID">
+            @foreach (var turn in this.Model)
             {
-                <option value="@employee.ID">@employee.FirstName @employee.LastName</option>
+                <option value="@turn.ID">@turn.Name</option>
             }
         </select>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </div>
-
 </form>

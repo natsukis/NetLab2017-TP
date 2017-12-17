@@ -73,25 +73,25 @@ namespace Data.DataAccess
             {
                 throw new Exception("Failed to save changes.");
             }
-            
+
         }
 
-        public void Delete(Employee employee)
+        public void Delete(int id)
         {
-            try
+            using (var context = new Context())
             {
-                if (employee == null)
-                    throw new Exception("The employee doesn't exist.");
 
-                Repository.Remove(employee);
-                Repository.SaveChanges();
+                var employee = context.Employees
+                    .Where(c => c.ID == id)
+                    .FirstOrDefault();
+
+                if (employee != null)
+                {
+                    Repository.Remove(employee);
+                    Repository.SaveChanges();
+                }
             }
-            catch (Exception)
-            {
-                throw new Exception("Failed to remove the employee.");
-            }
+
         }
-
-
     }
 }

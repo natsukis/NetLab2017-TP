@@ -127,14 +127,14 @@ namespace Services.Crud
         public int Delete(int id)
         {
 
-            var employeeDelete = repoEmployees.Read(id);
+            //var employeeDelete = repoEmployees.Read(id);
 
-            if (employeeDelete == null)
-            {
-                return 0;
-            }
+            //if (employeeDelete == null)
+            //{
+            //    return 0;
+            //}
 
-            repoEmployees.Delete(employeeDelete);
+            repoEmployees.Delete(id);
 
             return 1;
 

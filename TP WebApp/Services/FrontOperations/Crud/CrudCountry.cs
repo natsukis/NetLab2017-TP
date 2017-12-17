@@ -70,18 +70,18 @@ namespace Services.Crud
 
                     CountryName = country.CountryName,
                 };
-                foreach (var employee in country.Employees)
-                {
-                    readCountry.Employees.Add(new EmployeeModel
-                    {
-                        ID = employee.ID,
-                        FirstName = employee.FirstName,
-                        LastName = employee.LastName,
-                        EntryDate = employee.EntryDate,
-                        CurrentShift = new ConvertShift().ConvertModel(employee.CurrentShift),
-                        ValueByHour = employee.ValueByHour
-                    });
-                }
+                //foreach (var employee in country.Employees)
+                //{
+                //    readCountry.Employees.Add(new EmployeeModel
+                //    {
+                //        ID = employee.ID,
+                //        FirstName = employee.FirstName,
+                //        LastName = employee.LastName,
+                //        EntryDate = employee.EntryDate,
+                //        CurrentShift = new ConvertShift().ConvertModel(employee.CurrentShift),
+                //        ValueByHour = employee.ValueByHour
+                //    });
+                //}
 
                 return readCountry;
             }
@@ -129,18 +129,18 @@ namespace Services.Crud
                 return 0;
             }
 
-            var auxDelete = repoEmployees.ReadAll().Where(c => c.Country.ID == id);
+            //var auxDelete = repoEmployees.ReadAll().Where(c => c.Country.ID == id);
 
-            if (auxDelete != null)
-            {
-                foreach (var employee in auxDelete)
-                {
+            //if (auxDelete != null)
+            //{
+            //    foreach (var employee in auxDelete)
+            //    {
 
-                    repoEmployees.Delete(employee);
+            //        repoEmployees.Delete(employee.ID);
 
-                }
+            //    }
 
-            }
+            //}
             repoCountry.Delete(countryDelete);
 
             return 1;

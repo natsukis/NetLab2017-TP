@@ -12,39 +12,53 @@ namespace Presentacion.Controllers
 {
     public class EmployeeController : Controller
     {
+
+        private CrudEmployee crudEmployee;
+
+        private CrudCountry crudCountry;
+
+        private ShowShift showShift;
+
+        public EmployeeController()
+        {
+            crudEmployee = new CrudEmployee();
+            crudCountry = new CrudCountry();
+            showShift = new ShowShift();
+        }
+
         public ActionResult Index()
         {
-            CrudEmployee crudEmployee = new CrudEmployee();
-            List<EmployeeModel> allEmployees = crudEmployee.ReadAll();
-            ViewBag.AllEmployees = allEmployees;
-            return View();
-
+            var allEmployees = crudEmployee.ReadAll();
+            return View(allEmployees);
         }
 
         public ActionResult Form()
         {
-            CrudCountry crudCountry = new CrudCountry();
-            List<CountryModel> allCountries = crudCountry.GetAll();
-            ViewBag.AllCountries = allCountries;
-
-            ShowShift showShift = new ShowShift();
-            List<ShiftModel> allShifts = showShift.ShowAll();
-            ViewBag.AllShifts = allShifts;
-            
+            ViewBag.AllCountries = crudCountry.GetAll();
+            ViewBag.AllShifts = showShift.ShowAll();
             return View();
         }
 
         [HttpPost]
         public ActionResult Add(EmployeeModel employee)
         {
-            CrudEmployee crudEmployee = new CrudEmployee();
-            crudEmployee.Create(employee);
-
-            return RedirectToAction("Index");
-
-
+            if (ModelState.IsValid)
+            {
+                crudEmployee.Create(employee);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View("Form", employee);
+            }
         }
 
-
+        public ActionResult ModifyEmployee(EmployeeModel employee)
+        {
+            ViewBag.AllEmployees = crudEmployee.ReadAll();
+            return View(); 
+                
+        }
+        
     }
 }

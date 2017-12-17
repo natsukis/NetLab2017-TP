@@ -10,13 +10,17 @@
 <body>
     @Html.Partial("_MenuSuperior")
     <div class="container">
-        <div class="row">
-            <div class="col-sm-2"></div>
-            <main class="col-sm-8">
-                @RenderBody()
-            </main>
-            <div class="col-sm-2"></div>
-        </div>
+        <main class="col-sm-8">
+            @RenderBody()
+        </main>
+        <aside class="col-sm-4">
+            <ul>
+                <li>@Html.ActionLink("Modify Employee", "ModifyEmployee", "Employee")</li>
+                <li>@Html.ActionLink("Delete Employee", "DeleteEmployee", "Employee")</li>
+            </ul>
+                
+        </aside>
+
     </div>
 </body>
 </html>

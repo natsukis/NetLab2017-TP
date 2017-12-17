@@ -1,37 +1,36 @@
-﻿  <form action="/Employee/Add" method="post">
+﻿@model Services.EmployeeModel
 
-        <label>ID:</label>
-        <input id="id" name="employee.ID" /><br/>
-        
-        <label>First Name:</label>
-        <input id="name" name="employee.FirstName" /><br />
 
-        <label>Last Name:</label>
-        <input id="lastName" name="employee.LastName" /><br />
+@using (Html.BeginForm("Add", "Employee", FormMethod.Post))
+{
+    <br/>
+    @Html.LabelFor(e => e.FirstName, "First Name:")
+    @Html.TextBoxFor(e => e.FirstName, new { @class = "form-control" })<br/>
+    @Html.ValidationMessageFor(e => e.FirstName)
 
-        <label>Country:</label>
-        <select id="country" name="employee.Country.CountryName" /><br />
-            @foreach(var country in ViewBag.AllCountries)
-            {
-               <option value=@country.CountryName>@country.CountryName</option>
-            }
-        
-      </select>
+    @Html.LabelFor(e => e.LastName, "Last Name:")
+    @Html.TextBoxFor(e => e.LastName, new { @class = "form-control" })<br />
+    @Html.ValidationMessageFor(e => e.LastName)
 
-        <label>Entry Date:</label>
-        <input id="entryDate" name="employee.EntryDate" /><br />
+    @Html.LabelFor(e => e.Country.CountryName, "Country:")
+    @Html.DropDownListFor(e => e.Country.ID,
+        new SelectList(ViewBag.AllCountries, "ID", "CountryName"),
+        new { @class = "form-control" })<br />
+    @Html.ValidationMessageFor(e => e.Country.CountryName)
 
-        <label>Shift:</label>
-        <select id="shift" name="employee.CurrentShift.Name" /><br />
-             @foreach(var shift in ViewBag.AllShifts)
-            {
-               <option value=@shift.Name>@shift.Name</option>
-            }
-      
-      </select>
+    @Html.LabelFor(e => e.EntryDate, "Entry Date:")
+    @Html.TextBoxFor(e => e.EntryDate, new { @class = "form-control" })<br />
+    @Html.ValidationMessageFor(e => e.EntryDate)
 
-        <label>Value by Hour:</label>
-        <input id="valueByHour" name="employee.ValueByHour" />
+    @Html.LabelFor(e => e.CurrentShift.Name, "Shift:")
+    @Html.DropDownListFor(e => e.CurrentShift.ID,
+        new SelectList(ViewBag.AllShifts, "ID", "Name"),
+        new { @class = "form-control" })<br />
+        @Html.ValidationMessageFor(e => e.CurrentShift.Name)
 
-        <input type="submit" value="Add" />
-</form>
+    @Html.LabelFor(e => e.ValueByHour, "Value by Hour:")
+    @Html.TextBoxFor(e => e.ValueByHour, new { @class = "form-control" })<br />
+    @Html.ValidationMessageFor(e => e.ValueByHour)
+
+    <input type="submit" value="Add" />
+}

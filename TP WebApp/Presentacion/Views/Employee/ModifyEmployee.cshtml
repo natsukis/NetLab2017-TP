@@ -1,41 +1,21 @@
 ﻿@model Services.EmployeeModel
 
-<br/>
-@using (Html.BeginForm("ModifyEmployee", "Employee", FormMethod.Get))
-
+<br />
+@if (ViewBag.Selected == null)
 {
-    @Html.LabelFor(e => e.FirstName, "Employee")
-    @Html.DropDownListFor(e => e.ID,
-        new SelectList(ViewBag.AllEmployees, "ID", "FirstName"),
-        new { @class = "form-control" })
+    using (Html.BeginForm("ModifyEmployee", "Employee", FormMethod.Post))
 
-    <input type="submit" value="Search"/>
+    {
+        @Html.LabelFor(e => e.FirstName, "Employee")
+        @Html.DropDownListFor(e => e.ID,
+                     new SelectList(ViewBag.AllEmployees, "ID", "FirstName"),
+                     new { @class = "form-control" })
+
+        <input type="submit" value="Search" />
+    }
 }
-
-@*<table class="table table-hover">
-     <thead>
-        <tr>
-            <th>ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Country</th>
-            <th>Entry Date</th>
-            <th>Shift</th>
-            <th>Value by Hour</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var employee in ViewBag.EmployeeFound)
-        {
-            <tr>
-                <td>@employee.ID</td>
-                <td>@employee.FirstName</td>
-                <td>@employee.LastName</td>
-                <td>@employee.Country.CountryName</td>
-                <td>@employee.EntryDate</td>
-                <td>@employee.CurrentShift.Name</td>
-                <td>@employee.ValueByHour</td>
-            </tr>
-        }
-    </tbody>
-</table>*@
+else
+{
+    //armate el form para editar aca
+    <h1>@Model.FirstName @Model.LastName</h1>
+}

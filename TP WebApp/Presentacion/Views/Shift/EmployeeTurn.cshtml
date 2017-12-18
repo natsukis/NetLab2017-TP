@@ -10,7 +10,6 @@
                 <th>Entry</th>
                 <th>Exit</th>
                 <th>Worked hours</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -23,7 +22,7 @@
                     <td>
                         @if (@employee.Entry.Year < DateTime.Today.Year)
                         {
-
+                            <a href="/Shift/ShiftControl?ID=@employee.ID&Day=@DateTime.Today&Employee.ID=@employee.Employee.ID&Entry=@employee.Entry&Exit=@employee.Exit&WorkedHours=@employee.WorkedHours&Section=1">Add Shift</a>
                         }
                         else
                         {
@@ -31,8 +30,12 @@
                         }
                     </td>
                     <td>
-                        @if (@employee.Entry.Year < DateTime.Today.Year)
+                        @if (@employee.Exit.Year < DateTime.Today.Year)
                         {
+                            if (@employee.Entry.Year >= DateTime.Today.Year)
+                            {
+                                <a href="/Shift/ShiftControl?ID=@employee.ID&Day=@DateTime.Today&Employee.ID=@employee.Employee.ID&Entry=@employee.Entry&Exit=@employee.Exit&WorkedHours=@employee.WorkedHours&Section=2">Add Shift</a>
+                            }
 
                         }
                         else
@@ -45,7 +48,7 @@
                         else
                         {@employee.WorkedHours <span>hs</span>}
                     </td>
-                    <td><a href="/Shift/ShiftControl?ID=@employee.ID&Day=@DateTime.Today&Employee.ID=@employee.Employee.ID&Entry=@employee.Entry&Exit=@employee.Exit&WorkedHours=@employee.WorkedHours">Add Shift</a></td>
+                    <!--<td><a href="/Shift/ShiftControl?ID=@employee.ID&Day=@DateTime.Today&Employee.ID=@employee.Employee.ID&Entry=@employee.Entry&Exit=@employee.Exit&WorkedHours=@employee.WorkedHours">Add Shift</a></td>-->
 
 
 

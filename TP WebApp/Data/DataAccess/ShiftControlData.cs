@@ -31,21 +31,14 @@ namespace Data.DataAccess
 
         public ShiftControl Read(DateTime date, int employeeID)
         {
-            try
+            using (var context = new Context())
             {
-                using (var context = new Context())
-                {
 
-                    return context.ShiftControl
-                        .Include(c => c.Employee)
-                        .AsNoTracking()
-                        .Where(c => c.Day == date && c.Employee.ID == employeeID)
-                        .First();
-                }
-            }
-            catch (Exception)
-            {
-                throw new Exception("There is no info with those parameters.");
+                return context.ShiftControl
+                    .Include(c => c.Employee)
+                    .AsNoTracking()
+                    .Where(c => c.Day == date && c.Employee.ID == employeeID)
+                    .FirstOrDefault();
             }
         }
 
@@ -101,8 +94,13 @@ namespace Data.DataAccess
             {
                 var shiftControl = this.Repository.GetById(shiftControlEdited.ID);
 
+                var entry = (DateTime)shiftControlEdited.Entry;
+                var exit = (DateTime)shiftControlEdited.Exit;
+
+                if (entry.Year == DateTime.Today.Year)
                 shiftControl.Entry = shiftControlEdited.Entry;
-                shiftControl.Exit = shiftControlEdited.Exit;
+                if (exit.Year == DateTime.Today.Year)
+                    shiftControl.Exit = shiftControlEdited.Exit;
                 shiftControl.WorkedHours = shiftControlEdited.WorkedHours;
 
                 Repository.Update(shiftControl);
@@ -112,7 +110,7 @@ namespace Data.DataAccess
             {
                 throw new Exception("Failed to save changes.");
             }
-            
+
         }
 
         public void Delete(int id)

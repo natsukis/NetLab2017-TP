@@ -20,6 +20,8 @@ namespace Services
 
             var employeeSumary = new HourSalaryModel();
 
+            employeeSumary.Control = new List<ShiftControlModel>();
+
             foreach (var x in listShift)
             {
 

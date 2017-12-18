@@ -40,20 +40,20 @@ namespace Presentacion.Controllers
             return View("EmployeeTurn",hourRegister.FirstEmployeesHours(registerID));
         }
 
-        public ActionResult ShiftControl(ShiftControlModel shiftControlModel)
+        public ActionResult ShiftControl(ShiftControlModel shiftControlModel,int section)
         {
-
+            ViewBag.Section = section;
             return View("ShiftControl", shiftControlModel);
         }
 
         [HttpPost]
         public ActionResult ShiftControlInsert(ShiftControlModel shiftControlModel)
         {
-            if (shiftControlModel.Entry.Year <= DateTime.Today.Year)
+            if (shiftControlModel.Entry.Year == DateTime.Today.Year)
             {
                 hourRegister.InsertInitialHour(shiftControlModel, shiftControlModel.Entry);
             }
-            if (shiftControlModel.Entry.Year == DateTime.Today.Year && shiftControlModel.Exit.Year <= DateTime.Today.Year)
+            if (shiftControlModel.Exit.Year == DateTime.Today.Year)
             {
                 hourRegister.InsertExitHour(shiftControlModel, shiftControlModel.Exit);
             }
@@ -94,7 +94,8 @@ namespace Presentacion.Controllers
         [HttpPost]
         public ActionResult Register2(int registerID)
         {
-            return View("EmployeeTurn", hourRegister.ControltEmployeesHours(registerID));
+            var list = hourRegister.ControltEmployeesHours(registerID);
+            return View("EmployeeTurn", list);
         }
 
       

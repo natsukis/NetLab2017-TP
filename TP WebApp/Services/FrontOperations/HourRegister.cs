@@ -88,26 +88,30 @@ namespace Services
                         modify.Employee = new ConvertEmployee().ConvertModel(y);
                     }
 
-                   
+
                     var aux = repoControl.Read(DateTime.Today, y.ID);
 
-                   
-                    modify.ID = aux.ID;
-                   
-                    modify.Day = DateTime.Today;
-                    if(aux.Entry != null)
+                    if (aux != null)
                     {
-                        modify.Entry = (DateTime)aux.Entry;
-                    }
 
-                    if (aux.Exit != null)
-                    {
-                        modify.Exit = (DateTime)aux.Exit;
-                    }
+                        modify.ID = aux.ID;
 
-                    listModel.Add(modify); 
-                          
-                   
+                        modify.Day = DateTime.Today;
+                        if (aux.Entry != null)
+                        {
+                            modify.Entry = (DateTime)aux.Entry;
+                        }
+
+                        if (aux.Exit != null)
+                        {
+                            modify.Exit = (DateTime)aux.Exit;
+                        }
+
+                        modify.WorkedHours = aux.WorkedHours;
+
+                        listModel.Add(modify);
+
+                    }
                 }
 
             }
@@ -134,7 +138,7 @@ namespace Services
                     ID = shift.ID,
                     Entry = hour,
                     Exit = shift.Exit
-                    
+
                 };
 
                 repoControl.Update(shiftControl);

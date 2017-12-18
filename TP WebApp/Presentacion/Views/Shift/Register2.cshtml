@@ -8,7 +8,7 @@
         <form action="/shift/register2" method="post">
             <div class="form-group">
                 <label for="registerID">Turn:</label>
-                <select class="form-control" name="registerID">
+                <select class="form-control" name="registerID" value="1">
                     @foreach (var turn in this.Model)
                     {
                         <option value="@turn.ID">@turn.Name</option>

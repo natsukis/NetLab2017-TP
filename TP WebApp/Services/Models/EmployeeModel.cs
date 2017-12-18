@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-   public class EmployeeModel
+    public class EmployeeModel
     {
         public int ID { get; set; }
 
@@ -18,12 +18,12 @@ namespace Services
         [Required, StringLength(50)]
         public string LastName { get; set; }
 
-  
+        [Required]
         public CountryModel Country { get; set; }
 
         public DateTime EntryDate { get; set; }
 
-
+        [Required]
         public ShiftModel CurrentShift { get; set; }
 
         public decimal ValueByHour { get; set; }

@@ -2,16 +2,24 @@
 
 <script src="~/Scripts/Validations.js"></script>
 
-<form action="/country/update" method="post">
-    <div>
-        <label>Id</label>
-        <input type="text" name="ID" value="@Model.ID" readonly />
+<div class="row">
+
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+
+
+        <form action="/country/update" method="post">
+            <div class="form-group">
+                <label>ID:</label>
+                <input class="form-control" type="text" name="ID" value="@Model.ID" readonly />
+            </div>
+            <div class="form-group">
+                <label>Country Name:</label>
+                <input class="form-control" type="text" name="CountryName" value="@Model.CountryName" onkeypress="return soloLetras(event)" required />
+            </div>
+                <button class="btn btn-primary" type="submit">Save</button>
+        </form>
+
     </div>
-    <div>
-        <label>Country Name</label>
-        <input type="text" name="CountryName" value="@Model.CountryName" onkeypress="return soloLetras(event)" required />
-    </div>
-    <div>
-        <button type="submit">Save</button>
-    </div>
-</form>
+    <div class="col-sm-2"></div>
+</div>

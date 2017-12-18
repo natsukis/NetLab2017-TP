@@ -1,14 +1,24 @@
 ﻿@model List<Services.Models.ShiftModel>
 
-<form action="/shift/register2" method="post">
-    <div class="form-group">
-        <label for="registerID">Turn:</label>
-        <select class="form-control" name="registerID">
-            @foreach (var turn in this.Model)
-            {
-                <option value="@turn.ID">@turn.Name</option>
-            }
-        </select>
-        <button type="submit" class="btn btn-primary">Submit</button>
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+
+
+        <form action="/shift/register2" method="post">
+            <div class="form-group">
+                <label for="registerID">Turn:</label>
+                <select class="form-control" name="registerID">
+                    @foreach (var turn in this.Model)
+                    {
+                        <option value="@turn.ID">@turn.Name</option>
+                    }
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+        </form>
+
     </div>
-</form>
+    <div class="col-sm-2"></div>
+</div>

@@ -82,7 +82,17 @@
                 </div>
 
             </li>
-            <li>@Html.ActionLink("Hour Register", "Register", "Shift")</li>
+            <li>
+                <div class="dropdown">
+                    <button class="dropbtn">Hour Register</button>
+                    <div class="dropdown-content">
+                        <a href="/Shift/Register">First Register</a>
+                        <a href="/Shift/Register2">Register Table</a>
+                    </div>
+                </div>
+
+            </li>
+           
             <li>@Html.ActionLink("Employee Salary", "Cash", "Shift")</li>
 
         </ul>

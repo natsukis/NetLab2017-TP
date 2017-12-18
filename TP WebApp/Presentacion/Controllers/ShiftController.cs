@@ -40,7 +40,7 @@ namespace Presentacion.Controllers
             return View("EmployeeTurn",hourRegister.EmployeesHours(registerID));
         }
 
-        public ActionResult ShiftControl(int shiftControlModel)
+        public ActionResult ShiftControl(ShiftControlModel shiftControlModel)
         {
             return View("ShiftControl", shiftControlModel);
         }

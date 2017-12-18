@@ -13,7 +13,7 @@
     @Html.ValidationMessageFor(e => e.LastName)
 
     @Html.LabelFor(e => e.Country.CountryName, "Country:")
-    @Html.DropDownListFor(e => e.Country.ID,
+    @Html.DropDownListFor(e => e.Country.CountryName,
         new SelectList(ViewBag.AllCountries, "ID", "CountryName"),
         new { @class = "form-control" })<br />
     @Html.ValidationMessageFor(e => e.Country.CountryName)

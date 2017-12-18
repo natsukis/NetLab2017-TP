@@ -49,16 +49,17 @@ namespace Presentacion.Controllers
         [HttpPost]
         public ActionResult ShiftControlInsert(ShiftControlModel shiftControlModel)
         {
-            if (shiftControlModel.Entry.Year < DateTime.Today.Year)
+            if (shiftControlModel.Entry.Year <= DateTime.Today.Year)
             {
                 hourRegister.InsertInitialHour(shiftControlModel, shiftControlModel.Entry);
             }
-            if (shiftControlModel.Entry.Year == DateTime.Today.Year && shiftControlModel.Exit.Year < DateTime.Today.Year)
+            if (shiftControlModel.Entry.Year == DateTime.Today.Year && shiftControlModel.Exit.Year <= DateTime.Today.Year)
             {
                 hourRegister.InsertExitHour(shiftControlModel, shiftControlModel.Exit);
             }
 
-            return View("EmployeeTurn",hourRegister.ControltEmployeesHours(shiftControlModel.ID));
+            //            return View("EmployeeTurn",hourRegister.ControltEmployeesHours(shiftControlModel.ID));
+            return RedirectToAction("Register2");
         }
 
         //Menu de cobrar
@@ -83,5 +84,19 @@ namespace Presentacion.Controllers
 
             return View(summary);
         }
+
+
+        public ActionResult Register2()
+        {
+            return View(showShift.ShowAll());
+        }
+
+        [HttpPost]
+        public ActionResult Register2(int registerID)
+        {
+            return View("EmployeeTurn", hourRegister.ControltEmployeesHours(registerID));
+        }
+
+      
     }
 }

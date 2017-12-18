@@ -10,13 +10,13 @@ DBCC CHECKIDENT ('Employees.dbo.Shifts',RESEED, 0)
 DBCC CHECKIDENT ('Employees.dbo.Countries',RESEED, 0)
 
 INSERT INTO dbo.Shifts
-VALUES ('Mañana',9,16)
+VALUES ('Morning',9,16)
 
 INSERT INTO dbo.Shifts
-VALUES ('Tarde',16,0)
+VALUES ('Afternoon',16,0)
 
 INSERT INTO dbo.Shifts
-VALUES ('Noche',0,9)
+VALUES ('Night',0,9)
 
 
 INSERT INTO dbo.Countries
@@ -26,7 +26,7 @@ INSERT INTO dbo.Countries
 values ('Brasil')
 
 INSERT INTO dbo.Countries
-values ('Estados Unidos')
+values ('United States')
 
 
 INSERT INTO dbo.Employees

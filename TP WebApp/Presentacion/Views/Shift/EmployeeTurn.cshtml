@@ -20,7 +20,7 @@
                 }
                 else
                 {
-                    @employee.Entry
+                    @employee.Entry.ToString("t")
                 }</td> <td>/</td>
                    <td>@if (@employee.Entry.Year < DateTime.Today.Year)
                 {
@@ -28,7 +28,7 @@
                 }
                 else
                 {
-                        @employee.Exit
+                        @employee.Exit.ToString("t")
                  }</td> <td>-</td>
                  
                 <td>@if (employee.WorkedHours <= 0) { }

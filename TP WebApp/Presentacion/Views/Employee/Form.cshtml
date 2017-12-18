@@ -12,21 +12,21 @@
     @Html.TextBoxFor(e => e.LastName, new { @class = "form-control" })<br />
     @Html.ValidationMessageFor(e => e.LastName)
 
-    @*@Html.LabelFor(e => e.Country.CountryName, "Country:")
+    @Html.LabelFor(e => e.Country.CountryName, "Country:")
     @Html.DropDownListFor(e => e.Country.ID,
         new SelectList(ViewBag.AllCountries, "ID", "CountryName", 1),
         new { @class = "form-control" })<br />
-    @Html.ValidationMessageFor(e => e.Country.CountryName)*@
+    @Html.ValidationMessageFor(e => e.Country.CountryName)
 
     @Html.LabelFor(e => e.EntryDate, "Entry Date:")
     @Html.TextBoxFor(e => e.EntryDate, new { @class = "form-control" })<br />
     @Html.ValidationMessageFor(e => e.EntryDate)
 
-    @*@Html.LabelFor(e => e.CurrentShift.Name, "Shift:")
+    @Html.LabelFor(e => e.CurrentShift.Name, "Shift:")
     @Html.DropDownListFor(e => e.CurrentShift.ID,
         new SelectList(ViewBag.AllShifts, "ID", "Name",1),
         new { @class = "form-control" })<br />
-    @Html.ValidationMessageFor(e => e.CurrentShift.Name)*@
+    @Html.ValidationMessageFor(e => e.CurrentShift.Name)
 
     @Html.LabelFor(e => e.ValueByHour, "Value by Hour:")
     @Html.TextBoxFor(e => e.ValueByHour, new { @class = "form-control" })<br />

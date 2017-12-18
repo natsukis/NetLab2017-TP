@@ -19,13 +19,11 @@ namespace Services
         [Required(ErrorMessage = "This field is required!")]
         [StringLength(50, ErrorMessage = "This field must contain less than fifty characters!")]
         public string LastName { get; set; }
-
-        //[Required]
+        
         public CountryModel Country { get; set; }
 
         public DateTime EntryDate { get; set; }
 
-        //[Required]
         public ShiftModel CurrentShift { get; set; }
 
         public decimal ValueByHour { get; set; }

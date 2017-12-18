@@ -88,6 +88,13 @@ namespace Presentacion.Controllers
             }
         }
 
+        public ActionResult DeleteEmployee()
+        {
+            ViewBag.AllEmployees = crudEmployee.ReadAll();
+            return View();
+
+        }
+
 
 
 

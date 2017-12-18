@@ -227,6 +227,7 @@
     <Content Include="Views\Shift\ShiftControl.cshtml" />
     <Content Include="Views\Employee\Form.cshtml" />
     <Content Include="Views\Employee\ModifyEmployee.cshtml" />
+    <Content Include="Views\Employee\DeleteEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

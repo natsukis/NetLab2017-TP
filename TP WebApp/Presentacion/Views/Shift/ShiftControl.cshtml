@@ -3,23 +3,23 @@
 <form action="/shift/shiftcontrolinsert" method="post">
     <div>
         <label>Id</label>
-        <input type="text" name="ID" value="@Model.ID" />
+        <input type="text" name="ID" value="@Model.ID" readonly/>
     </div>
     <div>
         <label>Entry</label>
-        <input type="time" />
-        <label>@if (Model.Entry.Year < DateTime.Today.Year) {@Model.Entry.ToString("t") }
+        <input type="time" name="Entry"/>
+        <label>@if (Model.Entry.Year < DateTime.Today.Year) { }
         else
-        {@Model.Entry }</label>
+        {@Model.Entry.ToString("t") }</label>
         
 </div>
 
 <div>
 
 <label>Exit</label>
-    <input type="time" />
+    <input type="time" name="Exit" />
 <label>@if (Model.Exit.Year < DateTime.Today.Year && Model.Entry.Year < DateTime.Today.Year) { }
-else{@Model.Exit }</label>
+else{@Model.Exit.ToString("t") }</label>
 
 
 </div>

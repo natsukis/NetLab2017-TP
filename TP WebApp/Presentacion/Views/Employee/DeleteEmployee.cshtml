@@ -1,58 +1,62 @@
 ﻿@model Services.EmployeeModel
 
-<br />
-@if (ViewBag.Selected == null)
-{
-    using (Html.BeginForm("DeleteEmployee", "Employee", FormMethod.Post))
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+        @if (ViewBag.Selected == null)
+        {
+            using (Html.BeginForm("DeleteEmployee", "Employee", FormMethod.Post))
 
-    {
+            {
+        <div class="form-group">
+            @Html.LabelFor(e => e.FirstName, "Employee")
+            @Html.DropDownListFor(e => e.ID,
+                                     new SelectList(ViewBag.AllEmployees, "ID", "FirstName"),
+                                     new { @class = "form-control" })
+        </div>
+                <input class="btn btn-primary" type="submit" value="Search" />
+            }
+        }
+        else
+        {
+            <h1>@Model.FirstName @Model.LastName</h1>
 
-        @Html.LabelFor(e => e.FirstName, "Employee")
-        @Html.DropDownListFor(e => e.ID,
-                               new SelectList(ViewBag.AllEmployees, "ID", "FirstName"),
-                               new { @class = "form-control" })
+            using (Html.BeginForm("DeletedEmployee", "Employee", FormMethod.Post))
+            {
 
-        <input type="submit" value="Search" />
-    }
-}
-else
-{
-    <h1>@Model.FirstName @Model.LastName</h1>
+                @Html.HiddenFor(e => e.ID)
 
-    using (Html.BeginForm("DeletedEmployee", "Employee", FormMethod.Post))
-    {
-        <br />
-        
-        @Html.HiddenFor(e => e.ID)
+                @Html.LabelFor(e => e.FirstName, "First Name:")
+                @Html.TextBoxFor(e => e.FirstName, new { @class = "form-control" })<br />
+                @Html.ValidationMessageFor(e => e.FirstName)
 
-        @Html.LabelFor(e => e.FirstName, "First Name:")
-        @Html.TextBoxFor(e => e.FirstName, new { @class = "form-control" })<br />
-        @Html.ValidationMessageFor(e => e.FirstName)
+                @Html.LabelFor(e => e.LastName, "Last Name:")
+                @Html.TextBoxFor(e => e.LastName, new { @class = "form-control" })<br />
+                @Html.ValidationMessageFor(e => e.LastName)
 
-        @Html.LabelFor(e => e.LastName, "Last Name:")
-        @Html.TextBoxFor(e => e.LastName, new { @class = "form-control" })<br />
-        @Html.ValidationMessageFor(e => e.LastName)
+                @Html.LabelFor(e => e.Country.CountryName, "Country:")
+                @Html.DropDownListFor(e => e.Country.ID,
+                          new SelectList(ViewBag.AllCountries, "ID", "CountryName", 1),
+                          new { @class = "form-control" })<br />
+                @Html.ValidationMessageFor(e => e.Country.CountryName)
 
-        @Html.LabelFor(e => e.Country.CountryName, "Country:")
-        @Html.DropDownListFor(e => e.Country.ID,
-             new SelectList(ViewBag.AllCountries, "ID", "CountryName", 1),
-             new { @class = "form-control" })<br />
-        @Html.ValidationMessageFor(e => e.Country.CountryName)
+                @Html.LabelFor(e => e.EntryDate, "Entry Date:")
+                @Html.TextBoxFor(e => e.EntryDate, new { @class = "form-control" })<br />
+                @Html.ValidationMessageFor(e => e.EntryDate)
 
-        @Html.LabelFor(e => e.EntryDate, "Entry Date:")
-        @Html.TextBoxFor(e => e.EntryDate, new { @class = "form-control" })<br />
-        @Html.ValidationMessageFor(e => e.EntryDate)
+                @Html.LabelFor(e => e.CurrentShift.Name, "Shift:")
+                @Html.DropDownListFor(e => e.CurrentShift.ID,
+                          new SelectList(ViewBag.AllShifts, "ID", "Name", 1),
+                          new { @class = "form-control" })<br />
+                @Html.ValidationMessageFor(e => e.CurrentShift.Name)
 
-        @Html.LabelFor(e => e.CurrentShift.Name, "Shift:")
-        @Html.DropDownListFor(e => e.CurrentShift.ID,
-             new SelectList(ViewBag.AllShifts, "ID", "Name", 1),
-             new { @class = "form-control" })<br />
-        @Html.ValidationMessageFor(e => e.CurrentShift.Name)
+                @Html.LabelFor(e => e.ValueByHour, "Value by Hour:")
+                @Html.TextBoxFor(e => e.ValueByHour, new { @class = "form-control" })<br />
+                @Html.ValidationMessageFor(e => e.ValueByHour)
 
-        @Html.LabelFor(e => e.ValueByHour, "Value by Hour:")
-        @Html.TextBoxFor(e => e.ValueByHour, new { @class = "form-control" })<br />
-        @Html.ValidationMessageFor(e => e.ValueByHour)
-
-        <input type="submit" value="Delete" />
-    }
-}
+                <input class="btn btn-primary" type="submit" value="Delete" />
+            }
+        }
+</div>
+    <div class="col-sm-2"></div>
+</div>

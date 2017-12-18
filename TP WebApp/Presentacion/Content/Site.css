@@ -1,14 +1,4 @@
-﻿input {
-    margin: 0.5em;
-}
-
-    input[type=submit] {
-        background-color: rgb(28,19,97);
-        border: 0;
-        padding: .5em;
-        color: white;
-    }
-
+﻿
 select {
     margin: 0.5em 0.5em 0;
     padding: .5em;

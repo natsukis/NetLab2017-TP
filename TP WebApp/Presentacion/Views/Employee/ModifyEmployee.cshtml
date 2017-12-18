@@ -18,4 +18,39 @@ else
 {
     //armate el form para editar aca
     <h1>@Model.FirstName @Model.LastName</h1>
+
+    using (Html.BeginForm("Add", "Employee", FormMethod.Post))
+    {
+        <br />
+        @Html.LabelFor(e => e.FirstName, "First Name:")
+        @Html.TextBoxFor(e => e.FirstName, new { @class = "form-control" })<br />
+        @Html.ValidationMessageFor(e => e.FirstName)
+
+        @Html.LabelFor(e => e.LastName, "Last Name:")
+        @Html.TextBoxFor(e => e.LastName, new { @class = "form-control" })<br />
+        @Html.ValidationMessageFor(e => e.LastName)
+
+        @*@Html.LabelFor(e => e.Country.CountryName, "Country:")
+        @Html.DropDownListFor(e => e.Country.CountryName,
+        new SelectList(ViewBag.AllCountries, "ID", "CountryName"),
+        new { @class = "form-control" })<br />
+        @Html.ValidationMessageFor(e => e.Country.CountryName)*@
+
+        @Html.LabelFor(e => e.EntryDate, "Entry Date:")
+        @Html.TextBoxFor(e => e.EntryDate, new { @class = "form-control" })<br />
+        @Html.ValidationMessageFor(e => e.EntryDate)
+
+        @*@Html.LabelFor(e => e.CurrentShift.Name, "Shift:")
+        @Html.DropDownListFor(e => e.CurrentShift.ID,
+        new SelectList(ViewBag.AllShifts, "ID", "Name"),
+        new { @class = "form-control" })<br />
+        @Html.ValidationMessageFor(e => e.CurrentShift.Name)*@
+
+        @Html.LabelFor(e => e.ValueByHour, "Value by Hour:")
+        @Html.TextBoxFor(e => e.ValueByHour, new { @class = "form-control" })<br />
+        @Html.ValidationMessageFor(e => e.ValueByHour)
+
+        <input type="submit" value="Modify" />
+    }
+
 }

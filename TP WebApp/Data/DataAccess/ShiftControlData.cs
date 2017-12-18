@@ -17,6 +17,18 @@ namespace Data.DataAccess
             Repository = new Repository<ShiftControl>();
         }
 
+        public ShiftControl ReadByID(int id)
+        {
+            using (var context = new Context())
+            {
+                return context.ShiftControl
+                    .Include(c => c.Employee)
+                    .AsNoTracking()
+                    .Where(c => c.ID == id)
+                    .FirstOrDefault();
+            }
+        }
+
         public ShiftControl Read(DateTime date, int employeeID)
         {
             try

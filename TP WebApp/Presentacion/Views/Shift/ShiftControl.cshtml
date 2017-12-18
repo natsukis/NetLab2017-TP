@@ -7,13 +7,38 @@
     </div>
     <div>
         <label>Entry</label>
-        <input type="text" name="Entry" value="@Model.Entry" />
-    </div>
-    <div>
-        <label>Exit</label>
-        <input type="text" name="Exit" value="@Model.Exit" />
-    </div>
-    <div>
-        <button type="submit">Save</button>
-    </div>
+        <input type="time" />
+        <label>@if (Model.Entry.Year < DateTime.Today.Year) {@Model.Entry.ToString("t") }
+        else
+        {@Model.Entry }</label>
+        
+</div>
+
+<div>
+
+<label>Exit</label>
+    <input type="time" />
+<label>@if (Model.Exit.Year < DateTime.Today.Year && Model.Entry.Year < DateTime.Today.Year) { }
+else{@Model.Exit }</label>
+
+
+</div>
+
+<div>
+
+<button type="submit" id="save">Save</button>
+
+</div>
 </form>
+
+
+<script language="text/javascript">
+
+window.onload = function () {
+            if (document.getElementById('exit').value = null) {
+                document.getElementById('save').style.display = 'none';
+
+            }
+        }
+
+</script>

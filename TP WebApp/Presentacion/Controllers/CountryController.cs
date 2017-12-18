@@ -31,27 +31,43 @@ namespace Presentacion.Controllers
         [HttpPost]
         public ActionResult Create(CountryModel countryModel)
         {
-            crudCountry.Create(countryModel);
-            return View("Index",crudCountry.GetAll());
+            if (ModelState.IsValid)
+            {
+                crudCountry.Create(countryModel);
+                return View("Index", crudCountry.GetAll());
+            }
+            else return View("Index", crudCountry.GetAll());
         }
 
         public ActionResult Update(int countryID)
         {
-            var country = crudCountry.Read(countryID);
-            return View(country);
+            if (ModelState.IsValid)
+            {
+                var country = crudCountry.Read(countryID);
+                return View(country);
+            }
+            else return View("Index", crudCountry.GetAll());
         }
 
         [HttpPost]
         public ActionResult Update(CountryModel countryModel)
         {
-            crudCountry.Update(countryModel);
-            return View("Index",crudCountry.GetAll());
+            if (ModelState.IsValid)
+            {
+                crudCountry.Update(countryModel);
+                return View("Index", crudCountry.GetAll());
+            }
+            else return View("Index", crudCountry.GetAll());
         }
 
         public ActionResult Delete(int countryID)
         {
-            crudCountry.Delete(countryID);
-            return View("Index",crudCountry.GetAll());
+            if (ModelState.IsValid)
+            {
+                crudCountry.Delete(countryID);
+                return View("Index", crudCountry.GetAll());
+            }
+            else return View("Index", crudCountry.GetAll());
         }
 
         

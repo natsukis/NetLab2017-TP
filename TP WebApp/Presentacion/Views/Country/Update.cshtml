@@ -1,5 +1,7 @@
 ﻿@model Services.CountryModel
 
+<script src="~/Scripts/Validations.js"></script>
+
 <form action="/country/update" method="post">
     <div>
         <label>Id</label>
@@ -7,7 +9,7 @@
     </div>
     <div>
         <label>Country Name</label>
-        <input type="text" name="CountryName" value="@Model.CountryName" required />
+        <input type="text" name="CountryName" value="@Model.CountryName" onkeypress="return soloLetras(event)" required />
     </div>
     <div>
         <button type="submit">Save</button>

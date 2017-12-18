@@ -48,11 +48,11 @@ namespace Presentacion.Controllers
         [HttpPost]
         public ActionResult ShiftControlInsert(ShiftControlModel shiftControlModel)
         {
-            if (!hourRegister.EntryHourVerification(shiftControlModel))
+            if (shiftControlModel.Entry.Year < DateTime.Today.Year)
             {
                 hourRegister.InsertInitialHour(shiftControlModel, shiftControlModel.Entry);
             }
-            if (hourRegister.EntryHourVerification(shiftControlModel))
+            if (shiftControlModel.Entry.Year == DateTime.Today.Year && shiftControlModel.Exit.Year < DateTime.Today.Year)
             {
                 hourRegister.InsertExitHour(shiftControlModel, shiftControlModel.Exit);
             }

@@ -10,8 +10,30 @@
         @foreach (var employee in this.Model)
         {
             <tr>
-                <td>@employee.Employee.ID - @employee.Employee.FirstName @employee.Employee.LastName - @employee.Entry - @employee.Exit - @employee.WorkedHours - <a href="/Shift/ShiftControl?ID=@employee.ID&Day=@DateTime.Today&Employee.ID=@employee.Employee.ID&Entry=@employee.Entry&Exit=@employee.Exit&WorkedHours=@employee.WorkedHours">AgregarHorario</a></td>
+                <td>@employee.Employee.ID</td> <td>-</td>
+               <td>@employee.Employee.FirstName</td>
+                <td>@employee.Employee.LastName</td> <td>-</td>
+                <td>@if (@employee.Entry.Year < DateTime.Today.Year)
+                {
+
+                }
+                else
+                {
+                    @employee.Entry
+                }</td> <td>/</td>
+                   <td>@if (@employee.Entry.Year < DateTime.Today.Year)
+                {
+
+                }
+                else
+                {
+                        @employee.Exit
+                 }</td> <td>-</td>
+                 
+                <td>@if (employee.WorkedHours <= 0) { }
+                else {@employee.WorkedHours <span>hs</span>}</td> <td>-</td>  <td><a href="/Shift/ShiftControl?ID=@employee.ID&Day=@DateTime.Today&Employee.ID=@employee.Employee.ID&Entry=@employee.Entry&Exit=@employee.Exit&WorkedHours=@employee.WorkedHours">AgregarHorario</a></td>
             </tr>
         }
     </tbody>
 </table>
+

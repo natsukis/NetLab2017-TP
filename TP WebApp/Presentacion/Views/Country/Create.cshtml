@@ -1,9 +1,12 @@
-﻿<form action="/country/create" method="post">
+﻿<script src="~/Scripts/Validations.js"></script>
+
+<form action="/country/create" method="post">
     <div>
         <label>Country</label>
-        <input type="text" name="CountryName" required />
+        <input type="text" name="CountryName" onkeypress="return soloLetras(event)" required />
     </div>
     <div>
         <button type="submit">Save</button>
     </div>
 </form>
+

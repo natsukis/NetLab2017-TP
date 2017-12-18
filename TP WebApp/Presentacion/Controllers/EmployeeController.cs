@@ -71,5 +71,23 @@ namespace Presentacion.Controllers
             return View(employee);
         }
 
+        [HttpPost]
+        public ActionResult Update(EmployeeModel employee)
+        {
+            if (ModelState.IsValid)
+            {
+                crudEmployee.Update(employee);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View("ModifyEmployee", employee.ID);
+            }
+        }
+
+
+
+
+
     }
 }

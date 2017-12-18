@@ -24,7 +24,7 @@ namespace Data.DataAccess
                 using (var context = new Context())
                 {
                     var country = context.Countries
-                        .Where(c => c.CountryName == employee.Country.CountryName)
+                        .Where(c => c.ID == employee.Country.ID)
                         .First();
 
                     employee.Country = country;

@@ -10,34 +10,28 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-   public class HourRegister
+    public class HourRegister
     {
 
         private ShiftControlData repoControl = new ShiftControlData();
         private EmployeesData repoEmployees = new EmployeesData();
         private ShiftsData repoShift = new ShiftsData();
-        
-        
-        public List<ShiftControlModel> EmployeesHours(int shift)
+
+
+        public List<ShiftControlModel> FirstEmployeesHours(int shift)
         {
             var electedShift = repoShift.Read(shift);
 
             var listEmployee = repoEmployees.ReadAll().Where(c => c.CurrentShift.ID == shift);
-                       
+
             var listModel = new List<ShiftControlModel>();
+
+            var shiftcontrol = new ShiftControlModel();
 
             if (listEmployee != null)
             {
                 foreach (var x in listEmployee)
                 {
-                    var shiftcontrol = new ShiftControlModel();
-
-                    listModel.Add(new ShiftControlModel()
-                    {
-                        Employee = new ConvertEmployee().ConvertModel(x),
-                        Day = DateTime.Today
-
-                    });
 
                     var shifttData = new ShiftControl
                     {
@@ -48,23 +42,84 @@ namespace Services
 
                     repoControl.Create(shifttData);
 
+                    var auxEmployee = new EmployeeModel();
+
+                    if (x != null)
+                    {
+                        auxEmployee = new ConvertEmployee().ConvertModel(x);
+                    }
+
+                    listModel.Add(new ShiftControlModel()
+                    {
+                        ID = repoControl.Read(DateTime.Today, x.ID).ID,
+                        Employee = auxEmployee,
+                        Day = DateTime.Today,
+
+                    });
                 }
-                   
+
             }
-            
+
             return listModel;
         }
 
 
+        public List<ShiftControlModel> ControltEmployeesHours(int shift)
+        {
+            var electedShift = repoShift.Read(shift);
+
+            var listEmployee = repoEmployees.ReadAll().Where(c => c.CurrentShift.ID == shift);
+
+            var listModel = new List<ShiftControlModel>();
+
+            if (listEmployee != null)
+            {
+
+                foreach (var y in listEmployee)
+                {
+
+
+                    var auxEmployee = new EmployeeModel();
+
+                    if (y != null)
+                    {
+                        auxEmployee = new ConvertEmployee().ConvertModel(y);
+                    }
+
+                    var shiftcontrol = new ShiftControlModel();
+
+                    var aux = repoControl.Read(DateTime.Today, y.ID);
+
+                    listModel.Add(new ShiftControlModel()
+                    {
+                        ID = aux.ID,
+                        Employee = auxEmployee,
+                        Day = DateTime.Today,
+                        Entry = (DateTime)aux.Entry,
+                        Exit = (DateTime)aux.Exit
+
+                    });
+                }
+
+            }
+
+            return listModel;
+        }
+
+
+
         public bool EntryHourVerification(ShiftControlModel shift) => shift.Entry == null;
-                
+
         public bool ExitHourVerification(ShiftControlModel shift) => shift.Exit == null;
-      
+
 
         public int InsertInitialHour(ShiftControlModel shift, DateTime hour)
         {
             try
             {
+
+
+
                 var shiftControl = new ShiftControl
                 {
                     ID = shift.ID,
@@ -75,14 +130,14 @@ namespace Services
                 };
 
                 repoControl.Update(shiftControl);
-                
+
                 return 1;
             }
             catch
             {
                 return 0;
             }
-           
+
         }
 
         public int InsertExitHour(ShiftControlModel shift, DateTime hour)
@@ -108,11 +163,11 @@ namespace Services
             }
 
         }
-        
-        public decimal CalculateWork(DateTime entry , DateTime exit)
+
+        public decimal CalculateWork(DateTime entry, DateTime exit)
         {
-           
-           return exit.Hour + exit.Minute - entry.Hour - entry.Minute;
+
+            return exit.Hour + exit.Minute - entry.Hour - entry.Minute;
         }
 
 

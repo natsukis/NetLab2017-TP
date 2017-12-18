@@ -17,19 +17,17 @@ namespace Services.Crud
         public void Create(EmployeeModel employee)
         {
 
-            var auxCountry = new Country();
+            var auxCountry = new Country {
 
-            if (employee.Country != null)
+                ID = employee.Country.ID
+            };
+
+
+            var auxShift = new Shift
             {
-
-                auxCountry.CountryName = employee.Country.CountryName;
-
-            }
-
-            //var auxShift = new ConvertShift().Convert(employee.CurrentShift);          -------------- Si desean pasar shift relleno
-            var auxShift = new ShowShift().Select(employee.CurrentShift.Name);          //--------------en caso que solo deseen enviar el nombre turno
-
-
+                ID = employee.CurrentShift.ID
+            };
+                
             var newEmployee = new Employee()
             {
 

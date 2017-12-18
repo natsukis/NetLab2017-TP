@@ -37,7 +37,7 @@ namespace Presentacion.Controllers
         [HttpPost]
         public ActionResult Register(int registerID)
         {
-            return View("EmployeeTurn",hourRegister.EmployeesHours(registerID));
+            return View("EmployeeTurn",hourRegister.FirstEmployeesHours(registerID));
         }
 
         public ActionResult ShiftControl(ShiftControlModel shiftControlModel)

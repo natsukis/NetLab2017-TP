@@ -42,6 +42,7 @@ namespace Presentacion.Controllers
 
         public ActionResult ShiftControl(ShiftControlModel shiftControlModel)
         {
+
             return View("ShiftControl", shiftControlModel);
         }
 
@@ -57,7 +58,7 @@ namespace Presentacion.Controllers
                 hourRegister.InsertExitHour(shiftControlModel, shiftControlModel.Exit);
             }
 
-            return View("EmployeeTurn",showShift.ShowAll());
+            return View("EmployeeTurn",hourRegister.ControltEmployeesHours(shiftControlModel.ID));
         }
 
         //Menu de cobrar

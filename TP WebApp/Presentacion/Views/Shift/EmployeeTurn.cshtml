@@ -10,7 +10,7 @@
         @foreach (var employee in this.Model)
         {
             <tr>
-                <td>@employee.Employee.ID - @employee.Employee.FirstName @employee.Employee.LastName - @employee.Entry - @employee.Exit - @employee.WorkedHours - <a href="/Shift/ShiftControl?ID=@employee.ID&Day=@DateTime.Today&Employee.ID=@employee.Employee.ID&Entry=@employee.Entry&Exit=@employee.Exit&WorkedHours=@employee.WorkedHours">AgregarHorario</a></td>
+                <td>@employee.ID - @employee.Employee.FirstName @employee.Employee.LastName - @employee.Entry - @employee.Exit - @employee.WorkedHours - <a href="/Shift/ShiftControl?ID=@employee.ID&Day=@DateTime.Today&Employee.ID=@employee.Employee.ID&Entry=@employee.Entry&Exit=@employee.Exit&WorkedHours=@employee.WorkedHours">AgregarHorario</a></td>
             </tr>
         }
     </tbody>

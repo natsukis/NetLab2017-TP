@@ -12,18 +12,20 @@ namespace Services
     {
         public int ID { get; set; }
 
-        [Required, StringLength(50)]
+        [Required(ErrorMessage ="This field is required!")] 
+        [StringLength(50, ErrorMessage = "This field must contain less than fifty characters!")]
         public string FirstName { get; set; }
 
-        [Required, StringLength(50)]
+        [Required(ErrorMessage = "This field is required!")]
+        [StringLength(50, ErrorMessage = "This field must contain less than fifty characters!")]
         public string LastName { get; set; }
 
-        [Required]
+        //[Required]
         public CountryModel Country { get; set; }
 
         public DateTime EntryDate { get; set; }
 
-        [Required]
+        //[Required]
         public ShiftModel CurrentShift { get; set; }
 
         public decimal ValueByHour { get; set; }

@@ -95,9 +95,25 @@ namespace Presentacion.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult DeleteEmployee(int ID)
+        {
+            var employee = crudEmployee.Read(ID);
 
+            if (employee != null)
+                ViewBag.Selected = true;
 
+            ViewBag.AllCountries = crudCountry.GetAll();
+            ViewBag.AllShifts = showShift.ShowAll();
 
+            return View(employee);
 
+        }
+
+        public ActionResult DeletedEmployee(EmployeeModel employee)
+        {
+            this.crudEmployee.Delete(employee.ID);
+            return RedirectToAction("Index");
+        }
     }
 }

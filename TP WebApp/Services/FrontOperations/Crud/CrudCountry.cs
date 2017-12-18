@@ -129,18 +129,7 @@ namespace Services.Crud
                 return 0;
             }
 
-            //var auxDelete = repoEmployees.ReadAll().Where(c => c.Country.ID == id);
-
-            //if (auxDelete != null)
-            //{
-            //    foreach (var employee in auxDelete)
-            //    {
-
-            //        repoEmployees.Delete(employee.ID);
-
-            //    }
-
-            //}
+        
             repoCountry.Delete(countryDelete);
 
             return 1;

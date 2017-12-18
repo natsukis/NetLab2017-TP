@@ -17,7 +17,8 @@ namespace Services.Crud
         public void Create(EmployeeModel employee)
         {
 
-            var auxCountry = new Country {
+            var auxCountry = new Country
+            {
 
                 ID = employee.Country.ID
             };
@@ -27,7 +28,7 @@ namespace Services.Crud
             {
                 ID = employee.CurrentShift.ID
             };
-                
+
             var newEmployee = new Employee()
             {
 
@@ -89,49 +90,49 @@ namespace Services.Crud
 
             if (employee.Country != null)
             {
-                auxCountry.CountryName = employee.Country.CountryName;
+                auxCountry.ID = employee.Country.ID;
 
             }
 
             var auxShift = new ConvertShift().Convert(employee.CurrentShift);
 
-            var employeeUpdate = repoEmployees.Read(employee.ID);
+            // var employeeUpdate = repoEmployees.Read(employee.ID);
 
-            if (employeeUpdate != null)
+            var employeeUpdate = new Employee
             {
+                ID = employee.ID
+            };
 
-                employeeUpdate.FirstName = employee.FirstName;
 
-                employeeUpdate.LastName = employee.LastName;
+            // if (employeeUpdate != null)
+            // {
 
-                employeeUpdate.Country = auxCountry;
+            employeeUpdate.FirstName = employee.FirstName;
 
-                employeeUpdate.EntryDate = employee.EntryDate;
+            employeeUpdate.LastName = employee.LastName;
 
-                employeeUpdate.CurrentShift = auxShift;
+            employeeUpdate.Country = auxCountry;
 
-                employeeUpdate.ValueByHour = employee.ValueByHour;
+            employeeUpdate.EntryDate = employee.EntryDate;
 
-                repoEmployees.Update(employeeUpdate);
+            employeeUpdate.CurrentShift = auxShift;
 
-                return 1;
+            employeeUpdate.ValueByHour = employee.ValueByHour;
 
-            }
+            repoEmployees.Update(employeeUpdate);
 
-            return 0;
+            return 1;
+
+            //  }
+
+            //  return 0;
 
         }
 
         public int Delete(int id)
         {
 
-            //var employeeDelete = repoEmployees.Read(id);
-
-            //if (employeeDelete == null)
-            //{
-            //    return 0;
-            //}
-
+          
             repoEmployees.Delete(id);
 
             return 1;

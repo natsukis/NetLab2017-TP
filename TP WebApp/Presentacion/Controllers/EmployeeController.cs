@@ -68,6 +68,9 @@ namespace Presentacion.Controllers
             if (employee != null)
                 ViewBag.Selected = true;
 
+            ViewBag.AllCountries = crudCountry.GetAll();
+            ViewBag.AllShifts = showShift.ShowAll();
+
             return View(employee);
         }
 

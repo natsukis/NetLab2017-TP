@@ -89,7 +89,7 @@ namespace Data.DataAccess
                         .First();
 
                     var country = context.Countries
-                        .Where(c => c.CountryName == employee.Country.CountryName)
+                        .Where(c => c.ID == employee.Country.ID)
                         .First();
 
                     employeeProxy.Country = country;

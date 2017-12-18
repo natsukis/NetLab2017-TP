@@ -228,6 +228,7 @@
     <Content Include="Views\Employee\Form.cshtml" />
     <Content Include="Views\Employee\ModifyEmployee.cshtml" />
     <Content Include="Views\Employee\DeleteEmployee.cshtml" />
+    <Content Include="Views\Shift\Register2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

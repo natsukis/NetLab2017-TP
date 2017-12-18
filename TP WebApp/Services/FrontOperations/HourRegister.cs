@@ -64,11 +64,11 @@ namespace Services
         }
 
 
-        public List<ShiftControlModel> ControltEmployeesHours(int shift)
+        public List<ShiftControlModel> ControltEmployeesHours(int id)
         {
-            var electedShift = repoShift.Read(shift);
+            var electedShift = repoShift.Read(id);
 
-            var listEmployee = repoEmployees.ReadAll().Where(c => c.CurrentShift.ID == shift);
+            var listEmployee = repoEmployees.ReadAll().Where(c => c.CurrentShift.ID == electedShift.ID);
 
             var listModel = new List<ShiftControlModel>();
 
@@ -81,24 +81,33 @@ namespace Services
 
                     var auxEmployee = new EmployeeModel();
 
+                    var modify = new ShiftControlModel();
+
                     if (y != null)
                     {
-                        auxEmployee = new ConvertEmployee().ConvertModel(y);
+                        modify.Employee = new ConvertEmployee().ConvertModel(y);
                     }
 
-                    var shiftcontrol = new ShiftControlModel();
-
+                   
                     var aux = repoControl.Read(DateTime.Today, y.ID);
 
-                    listModel.Add(new ShiftControlModel()
+                   
+                    modify.ID = aux.ID;
+                   
+                    modify.Day = DateTime.Today;
+                    if(aux.Entry != null)
                     {
-                        ID = aux.ID,
-                        Employee = auxEmployee,
-                        Day = DateTime.Today,
-                        Entry = (DateTime)aux.Entry,
-                        Exit = (DateTime)aux.Exit
+                        modify.Entry = (DateTime)aux.Entry;
+                    }
 
-                    });
+                    if (aux.Exit != null)
+                    {
+                        modify.Exit = (DateTime)aux.Exit;
+                    }
+
+                    listModel.Add(modify); 
+                          
+                   
                 }
 
             }
@@ -124,9 +133,8 @@ namespace Services
                 {
                     ID = shift.ID,
                     Entry = hour,
-                    Exit = shift.Exit,
-                    WorkedHours = CalculateWork(shift.Exit, hour)
-
+                    Exit = shift.Exit
+                    
                 };
 
                 repoControl.Update(shiftControl);
@@ -149,7 +157,7 @@ namespace Services
                     ID = shift.ID,
                     Entry = shift.Entry,
                     Exit = hour,
-                    WorkedHours = CalculateWork(hour, shift.Entry)
+                    WorkedHours = CalculateWork(shift.Entry, hour)
 
                 };
 

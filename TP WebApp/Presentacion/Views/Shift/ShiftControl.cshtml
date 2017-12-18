@@ -8,7 +8,7 @@
     <div>
         <label>Entry</label>
         <input type="time" name="Entry"/>
-        <label>@if (Model.Entry.Year < DateTime.Today.Year) { }
+        <label>@if (Model.Entry.Year <= DateTime.Today.Year) { }
         else
         {@Model.Entry.ToString("t") }</label>
         

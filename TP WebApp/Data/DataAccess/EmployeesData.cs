@@ -126,8 +126,8 @@ namespace Data.DataAccess
 
                 if (employee != null)
                 {
-                    Repository.Remove(employee);
-                    Repository.SaveChanges();
+                    context.Employees.Remove(employee);
+                    context.SaveChanges();
                 }
             }
 

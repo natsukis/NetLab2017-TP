@@ -6,6 +6,7 @@
     using (Html.BeginForm("ModifyEmployee", "Employee", FormMethod.Post))
 
     {
+       
         @Html.LabelFor(e => e.FirstName, "Employee")
         @Html.DropDownListFor(e => e.ID,
                           new SelectList(ViewBag.AllEmployees, "ID", "FirstName"),
@@ -21,6 +22,8 @@ else
     using (Html.BeginForm("Update", "Employee", FormMethod.Post))
     {
         <br />
+        
+        @Html.HiddenFor(e => e.ID)
 
         @Html.LabelFor(e => e.FirstName, "First Name:")
         @Html.TextBoxFor(e => e.FirstName, new { @class = "form-control" })<br />
